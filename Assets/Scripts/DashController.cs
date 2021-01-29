@@ -35,6 +35,7 @@ public class DashController : MonoBehaviour, IController
         {
             deshVelocity = new Vector3(horizontal, 0, vertical) * speed;
             dashWasPressed = false;
+            consumeTime = Time.time;
         }
     }
     public Vector3 GetDashVelocity () {

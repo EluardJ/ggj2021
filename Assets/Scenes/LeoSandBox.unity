@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 201.1
   cooldown: 1.59
-  decay: 4.63
+  decay: 10.04
 --- !u!114 &1409470176
 MonoBehaviour:
   m_ObjectHideFlags: 0
