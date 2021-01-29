@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementController : MonoBehaviour
+public class MovementController : MonoBehaviour, IController
 {
     public float runSpeed = 20.0f;  
     public float maxRotationDelta = 1f;
@@ -18,7 +18,7 @@ public class MovementController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateController()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical"); 
@@ -28,9 +28,8 @@ public class MovementController : MonoBehaviour
         transform.LookAt(this.transform.position + direction, Vector3.up);
         dot = Vector3.Dot(transform.forward, inputDirection);
     }
-    private void FixedUpdate()
+    public void FixedUpdateController()
     {  
         body.AddForce(transform.forward * Mathf.Clamp01(0.5f + Mathf.Clamp01(dot * 2f)) * runSpeed, ForceMode.Acceleration);
     }
-
 }
