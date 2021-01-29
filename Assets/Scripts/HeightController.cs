@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeightController : MonoBehaviour
+public class HeightController : MonoBehaviour, IController
 {
     public float speed = 1f;
     public float maxHeight = 3f;
@@ -18,7 +18,7 @@ public class HeightController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void UpdateController()
     {
         up = Input.GetAxisRaw("Fire1");
         down = Input.GetAxisRaw("Fire2");
@@ -27,5 +27,8 @@ public class HeightController : MonoBehaviour
         heightHandle.localPosition = new Vector3(0, height, 0);
         scaledHandle.localPosition = heightHandle.localPosition * 0.5f;
         scaledHandle.localScale = new Vector3(scaledHandle.localScale.x, heightHandle.localPosition.y, scaledHandle.localScale.z);
+    }
+    public void FixedUpdateController()
+    {
     }
 }
