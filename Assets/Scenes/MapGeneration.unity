@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridDimensions: 3
-  chunksSize: 10
+  chunkSize: 10
   chunkPrefab: {fileID: 5602484952419214300, guid: 88b131ec0fe233c4283f6fc2d82d64d6,
     type: 3}
 --- !u!4 &56667803
@@ -295,8 +295,8 @@ Camera:
   m_GameObject: {fileID: 217987214}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
