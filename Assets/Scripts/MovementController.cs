@@ -9,12 +9,15 @@ public class MovementController : MonoBehaviour, IController
     Rigidbody body;
     float horizontal;
     float vertical;
+    Vector3 inputDirection;
     Vector3 direction;
     float dot;
+    DashController dashController;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>(); 
+        dashController = GetComponent<DashController>();
     }
 
     // Update is called once per frame
@@ -23,13 +26,18 @@ public class MovementController : MonoBehaviour, IController
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical"); 
 
-        Vector3 inputDirection = new Vector3(horizontal, 0, vertical).normalized;
+        inputDirection = new Vector3(horizontal, 0, vertical).normalized;
         direction = Vector3.RotateTowards(transform.forward, inputDirection, maxRotationDelta * Time.deltaTime, 0.1f * Time.deltaTime);
         transform.LookAt(this.transform.position + direction, Vector3.up);
         dot = Vector3.Dot(transform.forward, inputDirection);
     }
     public void FixedUpdateController()
     {  
-        body.AddForce(transform.forward * Mathf.Clamp01(0.5f + Mathf.Clamp01(dot * 2f)) * runSpeed, ForceMode.Acceleration);
+        Vector3 dashVelocity = Vector3.zero;
+        if (dashController != null) 
+        {
+            dashVelocity = dashController.GetDashVelocity();
+        }
+        body.AddForce(dashVelocity + transform.forward * Mathf.Clamp01(0.5f + Mathf.Clamp01(dot * 2f)) * (runSpeed * inputDirection.magnitude), ForceMode.Acceleration);
     }
 }
