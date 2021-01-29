@@ -8,9 +8,6 @@ public class RoomChunk : MonoBehaviour
     #region Variables
     public GridLevel level = default;
     public Vector2 gridCoords = default;
-
-    [SerializeField] Rigidbody rb = default;
-    [SerializeField] Transform ground = default;
     #endregion
 
     #region Functions
