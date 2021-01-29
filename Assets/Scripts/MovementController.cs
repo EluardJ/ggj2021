@@ -22,6 +22,7 @@ public class MovementController : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical"); 
+
         Vector3 inputDirection = new Vector3(horizontal, 0, vertical).normalized;
         direction = Vector3.RotateTowards(transform.forward, inputDirection, maxRotationDelta * Time.deltaTime, 0.1f * Time.deltaTime);
         transform.LookAt(this.transform.position + direction, Vector3.up);
