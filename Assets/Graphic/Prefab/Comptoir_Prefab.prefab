@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5519918679198940561}
   - component: {fileID: 7745707037436332379}
   m_Layer: 0
-  m_Name: Comptoir
+  m_Name: Comptoir_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8106123032236222606}
-  m_Mesh: {fileID: -7841764597520211122, guid: 8e609277d7594cf40b3ede779d10c553, type: 3}
+  m_Mesh: {fileID: 6788383922943872000, guid: 8e609277d7594cf40b3ede779d10c553, type: 3}
 --- !u!23 &7745707037436332379
 MeshRenderer:
   m_ObjectHideFlags: 0
