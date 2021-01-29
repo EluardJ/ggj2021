@@ -6,7 +6,7 @@ public class Level : MonoBehaviour
 {
     #region Variables
     [SerializeField] int gridDimensions = 3;
-    [SerializeField] float chunksSize = 10;
+    [SerializeField] float chunkSize = 10;
     [SerializeField] GameObject chunkPrefab = default;
 
     Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
@@ -16,7 +16,13 @@ public class Level : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
-            CreateGrid(gridDimensions, chunksSize);
+            CreateGrid(gridDimensions, chunkSize);
+
+        if (Input.GetKeyDown(KeyCode.M))
+            chunks[Vector2.zero].MoveToNewPosition(Vector2.left, chunkSize);
+
+        if (Input.GetKeyDown(KeyCode.S))
+            AddChunkAtRandom();
     }
     #endregion
 
@@ -37,6 +43,33 @@ public class Level : MonoBehaviour
                 chunks.Add(gridPosition, chunk);
             }
         }
+    }
+
+    private void AddChunkAtRandom()
+    {
+        Vector2 spawnPosition = GetRandomSpawnPosition();
+
+        GameObject go = Instantiate(chunkPrefab, new Vector3(spawnPosition.x * chunkSize, 0, spawnPosition.y * chunkSize), Quaternion.identity);
+        RoomChunk chunk = go.GetComponent<RoomChunk>();
+    }
+
+    private Vector2 GetRandomSpawnPosition()
+    {
+        int x = 0;
+        int y = 0;
+
+        if (Random.value > 0.5f)
+        {
+            x = Random.value > 0.5f ? -1 : gridDimensions;
+            y = Random.Range(0, gridDimensions);
+        }
+        else
+        {
+            x = Random.Range(0, gridDimensions);
+            y = Random.value > 0.5f ? -1 : gridDimensions;
+        }
+
+        return new Vector2(x, y);
     }
     #endregion
 }

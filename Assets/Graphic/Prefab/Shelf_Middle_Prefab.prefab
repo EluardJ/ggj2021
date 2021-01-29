@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1862115157790425235}
   - component: {fileID: 4482058645523723353}
   m_Layer: 0
-  m_Name: Shelf_Middle
+  m_Name: Shelf_Middle_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2680632332536731020}
-  m_Mesh: {fileID: -7197020074511306391, guid: 1c8519d224805384cad81f2df5eb5270, type: 3}
+  m_Mesh: {fileID: -7426188692839131464, guid: 6e770570ee2a23b4cba518f054695917, type: 3}
 --- !u!23 &4482058645523723353
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f3e397cc0c60914c948dc5f62c33572, type: 2}
+  - {fileID: 2100000, guid: 2ea2d51161954b649a174dbe5bee6e8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
