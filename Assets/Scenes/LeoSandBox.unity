@@ -1959,7 +1959,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad200b6ec507ce743877da283f05ef68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  useHeightSegment: 1
+  heighSegment: 3
+  speed: 4.01
   maxHeight: 3
   heightHandle: {fileID: 1733749739}
   scaledHandle: {fileID: 1812476537}
