@@ -5,18 +5,16 @@ using UnityEngine;
 public class GridLevel : MonoBehaviour
 {
     #region Variables
-    public int gridDimensions = 3;
-    [SerializeField] float chunkSize = 10;
     [SerializeField] GameObject chunkPrefab = default;
 
-    Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
+    public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
+    [HideInInspector] public int gridDimensions = 3;
+    [HideInInspector] public float chunkSize = 10f;
     #endregion
 
     #region Unity Callbacks
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-            CreateGrid(gridDimensions, chunkSize);
 
         if (Input.GetKeyDown(KeyCode.S))
             AddChunkAtRandom();
