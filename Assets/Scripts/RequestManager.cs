@@ -13,7 +13,6 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
     private List<Item> _currentlyRequestedItems = new List<Item>();
     private Dictionary<Item, RequestUI> _requestUILookup = new Dictionary<Item, RequestUI>();
     private Dictionary<Transform, Item> _transformToItemLookup = new Dictionary<Transform, Item>();
-
     private int nextRequestedItemId = 0;
     private int _count;
     // Start is called before the first frame update
@@ -34,31 +33,46 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                 if (chunk == null) {
                     continue;
                 }
+                if (chunk.HasItems()) {
+                    
+                }
+                else {
+                    // randomize handles.
+                    Transform[] handles = chunk.GetItemHandles();                    
+                    for (int i = 0; i < handles.Length; i++) {
+                        Transform temp = handles[i];
+                        int randomIndex = Random.Range(i, handles.Length);
+                        handles[i] = handles[randomIndex];
+                        handles[randomIndex] = temp;
+                    }
+                    // spawn and set items.
+                    int chunkItemCount = Mathf.Min(handles.Length, 2);
+                    Item[] newChunkItems = new Item[chunkItemCount];
+                    for (int i = 0; i < chunkItemCount; i++) {
+                        Transform t = handles[i];
+                        GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
+                        itemGameObject.transform.position = t.position;
+                        itemGameObject.transform.rotation = t.rotation;
+                        itemGameObject.transform.parent = t.parent;
+                        Item newItem = itemGameObject.GetComponent<Item>();
+                        newItem.SetRequestManager(this);
+                        newChunkItems[i] = newItem;
+                        _transformToItemLookup[t] = newItem;
+                    }
+                    chunk.SetItems(newChunkItems);
+
+                }
+
+
+
+
                 if (chunk as ComptoirChunk != null) {
                     (chunk as ComptoirChunk).RegisterListener(this);
                 }
                 Item[] chunkItems = chunk.GetItems(); 
-                foreach (Item chunkItem in chunkItems) {
-                    chunkItem.SetRequestManager(this);
+                if (chunkItems != null) {
+                    items.AddRange(chunkItems);
                 }
-                items.AddRange(chunkItems);
-
-                foreach (Transform t in chunk.GetItemHandles()) {
-                    t.gameObject.SetActive(false);
-                    if (_transformToItemLookup.ContainsKey(t) && _transformToItemLookup[t] != null) {
-                        items.Add(_transformToItemLookup[t]);
-                        continue;
-                    }
-                    GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
-                    itemGameObject.transform.position = t.position;
-                    itemGameObject.transform.rotation = t.rotation;
-                    itemGameObject.transform.parent = t.parent;
-                    Item newItem = itemGameObject.GetComponent<Item>();
-                    newItem.SetRequestManager(this);
-                    items.Add(newItem);
-                    _transformToItemLookup[t] = newItem;
-                }
-
             }
         }
         for (int i = 0; i < items.Count; i++) {

@@ -59,7 +59,6 @@ MonoBehaviour:
   distance: 3
   minRopeLength: 1
   hook: {fileID: 0}
-  thrower: {fileID: 0}
   hookTrf: {fileID: 0}
   hookRB: {fileID: 0}
   player: {fileID: 0}
@@ -77,8 +76,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e3d40bfec612145bb726fad17c30a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 100
-  maxChargeTime: 2
+  throwPower: 50
+  minimumPowerRatio: 0.2
+  maxChargeTime: 1
+  upwardModifier: 1.5
+  isCharging: 0
 --- !u!114 &5333881938018119774
 MonoBehaviour:
   m_ObjectHideFlags: 0

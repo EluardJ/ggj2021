@@ -14,9 +14,7 @@ public class GameManager : MonoBehaviour
         }
         if (_requestManager != null) {
             _requestManager.InitializeRequestItems();
-            _requestManager.PushNextRequest();
-            _requestManager.PushNextRequest();
-            _requestManager.PushNextRequest();
+            _requestManager.SetRequestCount(3);
         }
     }
 
