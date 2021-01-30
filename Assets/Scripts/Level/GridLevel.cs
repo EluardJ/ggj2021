@@ -9,7 +9,7 @@ public class GridLevel : MonoBehaviour
     [Range(0.1f, 2.5f)]
     public float chunkMoveTime = 1.5f;
     [HideInInspector] public float speedTestModifier = 3f;
-
+    
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
     [HideInInspector] public int gridDimensions = 3;
@@ -17,6 +17,7 @@ public class GridLevel : MonoBehaviour
     [HideInInspector] public GameObject[] chunkPrefabs = default;
     [HideInInspector] public GameObject comptoirPrefab = default;
     [HideInInspector] public Vector2 comptoirCoordinates = default;
+    public RequestManager _requestManager;
 
     float elapedTimeSinceChange = 0f;
     #endregion
@@ -30,6 +31,9 @@ public class GridLevel : MonoBehaviour
         {
             elapedTimeSinceChange = 0;
             AddChunkAtRandom();
+            if (_requestManager != null) {
+                _requestManager.OnChunckChanged();
+            }
         }
     }
     #endregion
