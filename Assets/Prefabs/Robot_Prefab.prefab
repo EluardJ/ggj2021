@@ -9608,6 +9608,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 18
   maxRotationDelta: 3.5
+  isDrifting: 0
+  _driftEffects:
+  - {fileID: 7675049109820026968}
+  - {fileID: 3972999147009961613}
 --- !u!114 &6239889121022621659
 MonoBehaviour:
   m_ObjectHideFlags: 0

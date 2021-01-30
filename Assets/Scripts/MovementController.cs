@@ -13,6 +13,9 @@ public class MovementController : MonoBehaviour, IController
     Vector3 direction;
     float dot;
     DashController dashController;
+    public bool isDrifting;
+    public float _driftThreshold = 0.7f;
+    public ParticleSystem[] _driftEffects;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,21 @@ public class MovementController : MonoBehaviour, IController
         direction = Vector3.RotateTowards(transform.forward, inputDirection, maxRotationDelta * Time.deltaTime, 0.1f * Time.deltaTime);
         transform.LookAt(this.transform.position + direction, Vector3.up);
         dot = Vector3.Dot(transform.forward, inputDirection);
+
+        bool wasDrifting = isDrifting;
+        isDrifting = Vector3.Dot(body.velocity, inputDirection) < _driftThreshold;
+        if(wasDrifting && !isDrifting) {
+            //exit drift
+            foreach (ParticleSystem effect in _driftEffects) {
+                effect.Stop();
+            }
+        }
+        else if (!wasDrifting && isDrifting) {
+            //enter drift
+            foreach (ParticleSystem effect in _driftEffects) {
+                effect.Play();
+            }
+        }
     }
     public void FixedUpdateController()
     {  
