@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class RequestManager : MonoBehaviour, IComptoirTriggerListener
 {
@@ -107,6 +108,11 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         itemCopy.transform.parent = requestUI.GetHandle();
         itemCopy.transform.localScale = Vector3.one;
         itemCopy.transform.localPosition = Vector3.zero;
+        Vector3 rot = new Vector3(0, 360, 0);
+        itemCopy.transform.DORotate(rot, 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+
+
+
         
         _currentlyRequestedItems.Add(requestedItem);
         _requestUILookup[requestedItem] = requestUI;
