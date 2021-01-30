@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridLevel : MonoBehaviour
 {
     #region Variables
+    [SerializeField] float autoAddChunkInterval = 3f;
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
@@ -23,7 +24,7 @@ public class GridLevel : MonoBehaviour
 
         elapedTimeSinceChange += Time.deltaTime;
 
-        if (elapedTimeSinceChange > 3)
+        if (elapedTimeSinceChange > autoAddChunkInterval)
         {
             elapedTimeSinceChange = 0;
             AddChunkAtRandom();
@@ -34,11 +35,6 @@ public class GridLevel : MonoBehaviour
     #region Functions
     private void AddChunkAtRandom()
     {
-        foreach (KeyValuePair<Vector2, Wall> wall in walls)
-        {
-            Debug.Log("<color=green>" + wall.Key + "</color>");
-        }
-
         bool horizontal = true;
         Vector2 spawnPosition = GetRandomSpawnPosition(ref horizontal);
 
