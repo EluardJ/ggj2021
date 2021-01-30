@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RequestManager : MonoBehaviour, IComptoirTriggerListener
 {
     public GridLevel _gridLevel;
+    public GameObject[] _itemPrefabs;
     public Item[] _requestedItems;
     public GameObject _requestUI_template;
     private List<Item> _currentlyRequestedItems = new List<Item>();
@@ -33,9 +34,26 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                     (chunk as ComptoirChunk).RegisterListener(this);
                 }
                 Item[] chunkItems = chunk.GetItems(); 
+
+                foreach (Transform t in chunk.GetItemHandles()) {
+                    GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
+                    itemGameObject.transform.position = t.position;
+                    itemGameObject.transform.rotation = t.rotation;
+                    Item newItem = itemGameObject.GetComponent<Item>();
+                    items.Add(newItem);
+                }
+
                 items.AddRange(chunkItems);
             }
         }
+
+        for (int i = 0; i < items.Count; i++) {
+            Item temp = items[i];
+            int randomIndex = Random.Range(i, items.Count);
+            items[i] = items[randomIndex];
+            items[randomIndex] = temp;
+        }
+
         _requestedItems = items.ToArray();
     }
 

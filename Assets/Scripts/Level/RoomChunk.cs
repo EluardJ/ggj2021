@@ -8,6 +8,7 @@ public class RoomChunk : MonoBehaviour
     #region Variables
     public GridLevel level = default;
     public Vector2 gridCoords = default;
+    public Transform[] _itemHandles;
     public Item[] _items;
 
     [HideInInspector] public bool comptoir = false;
@@ -27,6 +28,10 @@ public class RoomChunk : MonoBehaviour
     public Item[] GetItems()
     {
         return _items;
+    }
+
+    public Transform [] GetItemHandles () {
+        return _itemHandles;
     }
 
     private void OnMoveComplete()
