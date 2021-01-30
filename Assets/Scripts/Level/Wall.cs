@@ -5,16 +5,28 @@ using DG.Tweening;
 
 public class Wall : MonoBehaviour
 {
-    public void GetUp()
+    Animator animator = default;
+    new Collider collider = default;
+
+    private void Awake()
     {
-        transform.DOMove(transform.position + Vector3.up * 3, 0.25f).OnComplete(GetDown);
+        animator = GetComponentInChildren<Animator>();
+        collider = GetComponent<Collider>();
     }
 
-    public void GetDown()
+    public void Open()
     {
-        Sequence closeSequence = DOTween.Sequence();
-        closeSequence.AppendInterval(1.5f)
-            .Append(transform.DOMove(transform.position + Vector3.down * 3, 0.25f));
-        ;
+        collider.enabled = false;
+        animator.SetTrigger("Open");
+
+        StartCoroutine(CloseAfterDelayIE());
+    }
+
+    public IEnumerator CloseAfterDelayIE()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        collider.enabled = true;
+        animator.SetTrigger("Close");
     }
 }

@@ -23,13 +23,15 @@ public class GridGenerator : MonoBehaviour
 
     private void Start()
     {
-        if (_useAutoGeneration) {
+        if (_useAutoGeneration)
+        {
             Generate();
         }
     }
     #endregion
 
-    public void Generate () {
+    public void Generate()
+    {
         GenerateGrid(gridDimensions, chunkSize);
         GenerateWalls();
     }
@@ -70,14 +72,14 @@ public class GridGenerator : MonoBehaviour
         for (int i = 0; i < gridDimensions; i++)
         {
             Vector3 spawnPosition = new Vector3(i * chunkSize, 0, (gridDimensions * chunkSize) - chunkSize / 2);
-            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
+            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, 180, 0));
             gridLevel.walls.Add(new Vector2(i, gridDimensions), go.GetComponent<Wall>());
         }
 
         for (int i = 0; i < gridDimensions; i++)
         {
             Vector3 spawnPosition = new Vector3((gridDimensions * chunkSize) - chunkSize / 2, 0, i * chunkSize);
-            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, 90, 0));
+            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, -90, 0));
             gridLevel.walls.Add(new Vector2(gridDimensions, i), go.GetComponent<Wall>());
         }
 
