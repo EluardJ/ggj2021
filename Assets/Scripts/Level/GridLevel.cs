@@ -6,25 +6,25 @@ public class GridLevel : MonoBehaviour
 {
     #region Variables
     [SerializeField] float autoAddChunkInterval = 3f;
+    [SerializeField] public float speedTestModifier = 3f;
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
     [HideInInspector] public int gridDimensions = 3;
     [HideInInspector] public float chunkSize = 10f;
     [HideInInspector] public GameObject[] chunkPrefabs = default;
+    [HideInInspector] public GameObject comptoirPrefab = default;
+    [HideInInspector] public Vector2 comptoirCoordinates = default;
 
-    float elapedTimeSinceChange = 0;
+    float elapedTimeSinceChange = 0f;
     #endregion
 
     #region Unity Callbacks
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-            AddChunkAtRandom();
-
         elapedTimeSinceChange += Time.deltaTime;
 
-        if (elapedTimeSinceChange > autoAddChunkInterval)
+        if (elapedTimeSinceChange > autoAddChunkInterval * (1 / speedTestModifier))
         {
             elapedTimeSinceChange = 0;
             AddChunkAtRandom();
@@ -36,24 +36,77 @@ public class GridLevel : MonoBehaviour
     private void AddChunkAtRandom()
     {
         bool horizontal = true;
+        bool positive = false;
+        bool replaceComptoir = false;
         Vector2 spawnPosition = GetRandomSpawnPosition(ref horizontal);
 
+        if (horizontal)
+        {
+            positive = spawnPosition.x > 0 ? true : false;
+
+            if (positive)
+            {
+                if (comptoirCoordinates == new Vector2(0, spawnPosition.y))
+                    replaceComptoir = true;
+            }
+            else
+            {
+                if (comptoirCoordinates == new Vector2(gridDimensions - 1, spawnPosition.y))
+                    replaceComptoir = true;
+            }
+        }
+        else
+        {
+            positive = spawnPosition.y > 0 ? true : false;
+
+            if (positive)
+            {
+                if (comptoirCoordinates == new Vector2(spawnPosition.x, 0))
+                    replaceComptoir = true;
+            }
+            else
+            {
+                if (comptoirCoordinates == new Vector2(spawnPosition.x, gridDimensions - 1))
+                    replaceComptoir = true;
+            }
+        }
+
+        RoomChunk chunk = default;
+        if (replaceComptoir)
+            chunk = ReplaceComptoir(spawnPosition);
+        else
+            chunk = GetNewChunk(spawnPosition);
+
+        MoveRow(chunk, horizontal, positive);
+    }
+
+    private RoomChunk GetNewChunk(Vector2 spawnPosition)
+    {
         GameObject go = Instantiate(chunkPrefabs[Random.Range(0, chunkPrefabs.Length)], new Vector3(spawnPosition.x * chunkSize, 0, spawnPosition.y * chunkSize), Quaternion.identity);
         RoomChunk chunk = go.GetComponent<RoomChunk>();
         chunk.level = this;
         chunk.gridCoords = spawnPosition;
 
-        MoveRow(chunk, horizontal);
+        return chunk;
     }
 
-    private void MoveRow(RoomChunk newChunk, bool horizontal)
+    private RoomChunk ReplaceComptoir(Vector2 spawnPosition)
     {
-        bool positive = false;
+        GameObject go = Instantiate(comptoirPrefab, new Vector3(spawnPosition.x * chunkSize, 0, spawnPosition.y * chunkSize), Quaternion.identity);
+        RoomChunk chunk = go.GetComponent<RoomChunk>();
+        chunk.level = this;
+        chunk.gridCoords = spawnPosition;
 
+        chunks[comptoirCoordinates].comptoir = false;
+        chunk.comptoir = true;
+
+        return chunk;
+    }
+
+    private void MoveRow(RoomChunk newChunk, bool horizontal, bool positive)
+    {
         if (horizontal)
         {
-            positive = newChunk.gridCoords.x > 0 ? true : false;
-
             for (int i = 0; i < gridDimensions; i++)
             {
                 RoomChunk chunk = chunks[new Vector2(i, newChunk.gridCoords.y)];
@@ -79,8 +132,6 @@ public class GridLevel : MonoBehaviour
         }
         else
         {
-            positive = newChunk.gridCoords.y > 0 ? true : false;
-
             for (int i = 0; i < gridDimensions; i++)
             {
                 RoomChunk chunk = chunks[new Vector2(newChunk.gridCoords.x, i)];

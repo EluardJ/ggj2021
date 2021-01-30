@@ -9,17 +9,23 @@ public class RoomChunk : MonoBehaviour
     public GridLevel level = default;
     public Vector2 gridCoords = default;
     public Item[] _items;
+
+    [HideInInspector] public bool comptoir = false;
     #endregion
 
     #region Functions
     public void MoveToNewPosition(Vector2 newCoords, float chunkSize)
     {
+        if (comptoir)
+            level.comptoirCoordinates = newCoords;
+
         gridCoords = newCoords;
 
-        transform.DOMove(new Vector3(newCoords.x, 0, newCoords.y) * chunkSize, 1.5f).OnComplete(OnMoveComplete);
+        transform.DOMove(new Vector3(newCoords.x, 0, newCoords.y) * chunkSize, 1.5f * (1 / level.speedTestModifier)).OnComplete(OnMoveComplete);
     }
 
-    public Item [] GetItems () {
+    public Item[] GetItems()
+    {
         return _items;
     }
 
@@ -41,11 +47,14 @@ public class RoomChunk : MonoBehaviour
     }
     #endregion
     [ContextMenu("Auto_Fill_Items")]
-    public void Auto_Fill_Items () {
+    public void Auto_Fill_Items()
+    {
         List<Item> items = new List<Item>();
-        foreach(Transform t in transform) {
+        foreach (Transform t in transform)
+        {
             Item i = t.GetComponent<Item>();
-            if (i  != null) {
+            if (i != null)
+            {
                 items.Add(i);
             }
         }
