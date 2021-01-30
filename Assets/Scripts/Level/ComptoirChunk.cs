@@ -17,18 +17,20 @@ public class ComptoirChunk : RoomChunk
     {
         
     }
-    public void OnItemEnter (Item item) {
+    public bool OnItemEnter (Item item) {
+        bool hasBeenDropped = false;
         if (_listeners == null) {
-            return;
+            return hasBeenDropped;
         }
         if (item != null) {
             foreach (IComptoirTriggerListener listener in _listeners) {
                 if (listener == null) {
                     continue;
                 }
-                listener.OnItemDropped(item);
+                hasBeenDropped = hasBeenDropped || listener.OnItemDropped(item);
             }
         }
+        return hasBeenDropped;
     }
     public void RegisterListener (IComptoirTriggerListener listener) {
         if (_listeners == null || listener == null || _listeners.Contains(listener)) {

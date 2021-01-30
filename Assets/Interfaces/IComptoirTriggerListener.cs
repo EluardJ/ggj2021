@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IComptoirTriggerListener 
 {
-    void OnItemDropped (Item item);
+    bool OnItemDropped (Item item);
 }
