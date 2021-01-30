@@ -4,6 +4,7 @@ using UnityEngine;
 using Obi;
 using DG.Tweening;
 
+[RequireComponent(typeof(Thrower))]
 public class Grapple : MonoBehaviour
 {
     #region Variables
@@ -14,21 +15,23 @@ public class Grapple : MonoBehaviour
     public float minRopeLength = 0.2f;
 
     [Header("---Refs---")]
-    [SerializeField] Hook hook = default;
-    [SerializeField] Transform hookTrf = default;
-    [SerializeField] Rigidbody hookRB = default;
-    [SerializeField] Transform player = default;
-    [SerializeField] Transform hookHolder = default;
+    public Hook hook = default;
+    public Transform hookTrf = default;
+    public Rigidbody hookRB = default;
+    public Transform player = default;
+    public Transform hookHolder = default;
 
+    Thrower thrower = default;
     ObiRopeCursor cursor;
     ObiRope rope;
 
-    bool isGrabbing = false;
+    [HideInInspector] public bool isGrabbing = false;
     #endregion
 
     #region Unity Callbacks
     void Start()
     {
+        thrower = GetComponent<Thrower>();
         cursor = GetComponent<ObiRopeCursor>();
         rope = cursor.GetComponent<ObiRope>();
         hook.grapple = this;
@@ -38,9 +41,7 @@ public class Grapple : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire3"))
         {
-            if (isGrabbing)
-                Throw();
-            else
+            if (!isGrabbing)
                 LaunchGrapple();
         }
     }
@@ -110,11 +111,13 @@ public class Grapple : MonoBehaviour
         //hookTrf.DOMove(hookHolder.position + hookHolder.forward * 0.5f, 0.2f).OnComplete(RetrieveHook);
     }
 
-    private void Throw()
+    public void Throw(float force)
     {
-        Vector3 direction = (player.position - hookTrf.position).normalized;
+        Vector3 hookTweakedPosition = hookTrf.position;
+        hookTweakedPosition.y = hookHolder.position.y + 0.75f;
+        Vector3 direction = (player.position - hookTweakedPosition).normalized;
 
-        hook.Throw(direction + Vector3.up * 0.5f);
+        hook.Throw(direction, force);
 
         isGrabbing = false;
     }
@@ -123,12 +126,15 @@ public class Grapple : MonoBehaviour
     //{
     //    hookTrf.parent = hookHolder;
     //}
-    public void Drop () {
+    public void Drop()
+    {
         isGrabbing = false;
     }
     public void Grab()
     {
         isGrabbing = true;
+
+        thrower.Grab();
     }
     #endregion
 }
