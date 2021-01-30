@@ -7,6 +7,7 @@ public class GridGenerator : MonoBehaviour
 {
     #region Variables
     public int gridDimensions = 3;
+    [SerializeField] GameObject wallPrefab = default;
     [SerializeField] GameObject[] chunkPrefabs = default;
     [SerializeField] float chunkSize = 10;
 
@@ -22,6 +23,8 @@ public class GridGenerator : MonoBehaviour
     private void Start()
     {
         GenerateGrid(gridDimensions, chunkSize);
+
+        GenerateWalls();
     }
     #endregion
 
@@ -46,6 +49,37 @@ public class GridGenerator : MonoBehaviour
 
                 gridLevel.chunks.Add(gridCoords, chunk);
             }
+        }
+    }
+
+    private void GenerateWalls()
+    {
+        for (int i = 0; i < gridDimensions; i++)
+        {
+            Vector3 spawnPosition = new Vector3(i * chunkSize, 0, -chunkSize / 2);
+            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
+            gridLevel.walls.Add(new Vector2(i, -1), go.GetComponent<Wall>());
+        }
+
+        for (int i = 0; i < gridDimensions; i++)
+        {
+            Vector3 spawnPosition = new Vector3(i * chunkSize, 0, (gridDimensions * chunkSize) - chunkSize / 2);
+            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
+            gridLevel.walls.Add(new Vector2(i, gridDimensions), go.GetComponent<Wall>());
+        }
+
+        for (int i = 0; i < gridDimensions; i++)
+        {
+            Vector3 spawnPosition = new Vector3((gridDimensions * chunkSize) - chunkSize / 2, 0, i * chunkSize);
+            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, 90, 0));
+            gridLevel.walls.Add(new Vector2(gridDimensions, i), go.GetComponent<Wall>());
+        }
+
+        for (int i = 0; i < gridDimensions; i++)
+        {
+            Vector3 spawnPosition = new Vector3(-chunkSize / 2, 0, i * chunkSize);
+            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, 90, 0));
+            gridLevel.walls.Add(new Vector2(-1, i), go.GetComponent<Wall>());
         }
     }
     #endregion

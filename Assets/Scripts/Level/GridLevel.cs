@@ -7,6 +7,7 @@ public class GridLevel : MonoBehaviour
     #region Variables
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
+    public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
     [HideInInspector] public int gridDimensions = 3;
     [HideInInspector] public float chunkSize = 10f;
     [HideInInspector] public GameObject[] chunkPrefabs = default;
@@ -33,6 +34,11 @@ public class GridLevel : MonoBehaviour
     #region Functions
     private void AddChunkAtRandom()
     {
+        foreach (KeyValuePair<Vector2, Wall> wall in walls)
+        {
+            Debug.Log(wall.Key);
+        }
+
         bool horizontal = true;
         Vector2 spawnPosition = GetRandomSpawnPosition(ref horizontal);
 
@@ -60,6 +66,9 @@ public class GridLevel : MonoBehaviour
             }
 
             Vector2 newCoords = positive ? newChunk.gridCoords + Vector2.left : newChunk.gridCoords + Vector2.right;
+
+            Debug.Log("new chunk : " + newChunk.gridCoords);
+            walls[newChunk.gridCoords].GetUp();
 
             newChunk.MoveToNewPosition(newCoords, chunkSize);
         }
