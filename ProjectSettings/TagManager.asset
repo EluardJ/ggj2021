@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ChunkZone
+  - Movable
   layers:
   - Default
   - TransparentFX

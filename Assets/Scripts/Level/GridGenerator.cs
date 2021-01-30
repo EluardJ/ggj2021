@@ -10,6 +10,7 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] GameObject wallPrefab = default;
     [SerializeField] GameObject[] chunkPrefabs = default;
     [SerializeField] float chunkSize = 10;
+    public bool _useAutoGeneration = true;
 
     GridLevel gridLevel = default;
     #endregion
@@ -22,11 +23,16 @@ public class GridGenerator : MonoBehaviour
 
     private void Start()
     {
-        GenerateGrid(gridDimensions, chunkSize);
-
-        GenerateWalls();
+        if (_useAutoGeneration) {
+            Generate();
+        }
     }
     #endregion
+
+    public void Generate () {
+        GenerateGrid(gridDimensions, chunkSize);
+        GenerateWalls();
+    }
 
     #region Functions
     private void GenerateGrid(int gridDimensions, float chunkSize)

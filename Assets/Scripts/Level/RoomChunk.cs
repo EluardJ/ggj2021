@@ -8,6 +8,7 @@ public class RoomChunk : MonoBehaviour
     #region Variables
     public GridLevel level = default;
     public Vector2 gridCoords = default;
+    public Item[] _items;
     #endregion
 
     #region Functions
@@ -16,6 +17,10 @@ public class RoomChunk : MonoBehaviour
         gridCoords = newCoords;
 
         transform.DOMove(new Vector3(newCoords.x, 0, newCoords.y) * chunkSize, 1.5f).OnComplete(OnMoveComplete);
+    }
+
+    public Item [] GetItems () {
+        return _items;
     }
 
     private void OnMoveComplete()
@@ -35,4 +40,15 @@ public class RoomChunk : MonoBehaviour
         }
     }
     #endregion
+    [ContextMenu("Auto_Fill_Items")]
+    public void Auto_Fill_Items () {
+        List<Item> items = new List<Item>();
+        foreach(Transform t in transform) {
+            Item i = t.GetComponent<Item>();
+            if (i  != null) {
+                items.Add(i);
+            }
+        }
+        _items = items.ToArray();
+    }
 }

@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5234528450879891475}
-  - component: {fileID: 5219229514987010842}
+  - component: {fileID: -4791160274617342275}
+  - component: {fileID: -4591529762369281344}
   m_Layer: 0
   m_Name: Comptoir_Chunk
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5219229514987010842
+--- !u!114 &-4791160274617342275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +45,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5576822841205726220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e05673f01816ead488076f62a31dfbbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b83dcb181c58674a934ba5180b0c1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 0}
   gridCoords: {x: 0, y: 0}
+  _items: []
+  _comptoirTrigger: {fileID: -4591529762369281344}
+--- !u!65 &-4591529762369281344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5576822841205726220}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 3, z: 6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5202497970289347693
 PrefabInstance:
   m_ObjectHideFlags: 0
