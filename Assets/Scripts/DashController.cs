@@ -34,7 +34,7 @@ public class DashController : MonoBehaviour, IController
         if (dashWasPressed) 
         {
             Vector3 dashDirection = new Vector3(horizontal, 0, vertical);
-            if (horizontal <= 0.1f && vertical <= 0.1f) {
+            if (Mathf.Abs(horizontal) <= 0.1f && Mathf.Abs(vertical) <= 0.1f) {
                 dashDirection = transform.forward;
             }
             deshVelocity = dashDirection * speed;
