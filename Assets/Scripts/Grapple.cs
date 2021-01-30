@@ -8,11 +8,15 @@ public class Grapple : MonoBehaviour
 {
     #region Variables
     public float speed = 1;
+    public float comeBackSpeed = 1;
     public float distance = 1;
+    public float minRopeLength = 0.2f;
 
     [SerializeField] Transform hook = default;
     [SerializeField] Rigidbody hookRB = default;
+    [SerializeField] Collider hookCollider = default;
     [SerializeField] Transform player = default;
+    [SerializeField] Transform hookHolder = default;
 
     ObiRopeCursor cursor;
     ObiRope rope;
@@ -27,7 +31,7 @@ public class Grapple : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire3"))
             LaunchGrapple();
     }
     #endregion
@@ -40,27 +44,28 @@ public class Grapple : MonoBehaviour
 
     private IEnumerator LaunchGrappleIE()
     {
+        hook.parent = null;
         hookRB.isKinematic = true;
+        hookCollider.enabled = true;
 
-        float elapsedDistance = 0;
-        Vector3 origin = hook.position;
-        Vector3 direction = player.forward;
+        Vector3 target = player.position + player.forward * distance;
+        target.y = hookHolder.position.y;
 
-        Vector3 lastPosition = origin;
+        Vector3 lastPosition = hook.position;
 
-        while (elapsedDistance < distance)
+        while (true)
         {
-            Vector3 newPos = hook.position + direction * speed * Time.deltaTime;
+            Vector3 newPos = Vector3.MoveTowards(hook.position, target, speed * Time.fixedDeltaTime);
             hookRB.MovePosition(newPos);
 
-            float length = (lastPosition - hook.position).magnitude;
+            float length = Vector3.Distance(lastPosition, hook.position);
             lastPosition = hook.position;
+            cursor.ChangeLength(rope.restLength + length / 2f);
 
-            elapsedDistance += length;
+            if (Vector3.Distance(hook.position, target) < 0.001f)
+                break;
 
-            cursor.ChangeLength(rope.restLength + length);
-
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         hookRB.isKinematic = false;
@@ -70,12 +75,27 @@ public class Grapple : MonoBehaviour
 
     private IEnumerator RetrieveGrappleIE()
     {
-        while (rope.restLength > 0.4f)
+        while (rope.restLength > minRopeLength)
         {
-            cursor.ChangeLength(rope.restLength - 5 * Time.deltaTime);
+            float newLength = rope.restLength - comeBackSpeed * Time.deltaTime;
+            newLength = Mathf.Max(newLength, minRopeLength);
+
+            cursor.ChangeLength(rope.restLength - comeBackSpeed * Time.deltaTime);
 
             yield return null;
         }
+
+        cursor.ChangeLength(minRopeLength);
+
+        hookCollider.enabled = false;
+        hookRB.isKinematic = true;
+        //hook.DORotate(hookHolder.forward, 0.2f);
+        //hook.DOMove(hookHolder.position + hookHolder.forward * 0.5f, 0.2f).OnComplete(RetrieveHook);
     }
+
+    //private void RetrieveHook()
+    //{
+    //    hook.parent = hookHolder;
+    //}
     #endregion
 }
