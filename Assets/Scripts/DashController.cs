@@ -26,7 +26,7 @@ public class DashController : MonoBehaviour, IController
         horizontal = Input.GetAxisRaw("LookHorizontal");
         vertical = Input.GetAxisRaw("LookVertical"); 
         Vector3 look = new Vector3(horizontal, 0, vertical);
-        dashWasPressed = dashWasPressed || Input.GetButtonDown("Fire4");
+        dashWasPressed = dashWasPressed || Input.GetButtonDown("Fire1");
         if (Time.time < consumeTime + cooldown) 
         {
             dashWasPressed = false;
