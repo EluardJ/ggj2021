@@ -16,15 +16,10 @@ public class Hook : MonoBehaviour
 
     float grabbedMass = 0;
     GameObject grabbedObject = default;
-    Collider collider = null;
     bool isActive = false;
     #endregion
 
     #region Unity Callbacks
-    private void Awake()
-    {
-        collider = GetComponent<Collider>();
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (isActive && !isHoldingSomething && collision.gameObject.CompareTag("Movable"))
@@ -38,15 +33,16 @@ public class Hook : MonoBehaviour
         isActive = activate;
     }
 
-    
     private void OnTriggerEnter(Collider other)
     {
-        if (grabbedObject == null) {
+        if (grabbedObject == null)
+        {
             return;
         }
         ComptoirChunk comptoirChunk = other.GetComponent<ComptoirChunk>();
         Item grabbedItem = grabbedObject.GetComponent<Item>();
-        if (comptoirChunk != null && grabbedItem != null) {
+        if (comptoirChunk != null && grabbedItem != null)
+        {
             comptoirChunk.OnItemEnter(grabbedItem);
         }
         DropItem();
@@ -59,7 +55,6 @@ public class Hook : MonoBehaviour
     {
         isHoldingSomething = true;
         isActive = false;
-        //collider.enabled = false;
         grabbedObject = objectToGrab.gameObject;
 
         transform.rotation.SetLookRotation(contactNormal);

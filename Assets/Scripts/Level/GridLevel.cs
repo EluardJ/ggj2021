@@ -63,18 +63,18 @@ public class GridLevel : MonoBehaviour
                 if (positive)
                 {
                     if (i == 0)
-                        walls[nextCoords].GetUp();
+                        walls[nextCoords].Open();
                 }
                 else
                 {
                     if (i == gridDimensions - 1)
-                        walls[nextCoords].GetUp();
+                        walls[nextCoords].Open();
                 }
             }
 
             Vector2 newCoords = positive ? newChunk.gridCoords + Vector2.left : newChunk.gridCoords + Vector2.right;
 
-            walls[newChunk.gridCoords].GetUp();
+            walls[newChunk.gridCoords].Open();
             newChunk.MoveToNewPosition(newCoords, chunkSize);
         }
         else
@@ -90,18 +90,18 @@ public class GridLevel : MonoBehaviour
                 if (positive)
                 {
                     if (i == 0)
-                        walls[nextCoords].GetUp();
+                        walls[nextCoords].Open();
                 }
                 else
                 {
                     if (i == gridDimensions - 1)
-                        walls[nextCoords].GetUp();
+                        walls[nextCoords].Open();
                 }
             }
 
             Vector2 newCoords = positive ? newChunk.gridCoords + Vector2.down : newChunk.gridCoords + Vector2.up;
 
-            walls[newChunk.gridCoords].GetUp();
+            walls[newChunk.gridCoords].Open();
             newChunk.MoveToNewPosition(newCoords, chunkSize);
         }
     }
