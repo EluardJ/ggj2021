@@ -61,16 +61,16 @@ MonoBehaviour:
         targetColorBuffer: 0
         targetDepthBuffer: 0
         clearFlags: 0
-        passFoldout: 1
+        passFoldout: 0
         m_Version: 0
-        filterFoldout: 0
+        filterFoldout: 1
         rendererFoldout: 0
         renderQueueType: 2
         passNames:
         - Forward
         layerMask:
           serializedVersion: 2
-          m_Bits: 33554432
+          m_Bits: 37748736
         sortingCriteria: 59
         overrideMaterial: {fileID: 2100000, guid: 84329995495ee5049bcf44ee80daae11,
           type: 2}
@@ -91,14 +91,14 @@ MonoBehaviour:
         clearFlags: 0
         passFoldout: 0
         m_Version: 0
-        filterFoldout: 0
-        rendererFoldout: 0
+        filterFoldout: 1
+        rendererFoldout: 1
         renderQueueType: 2
         passNames:
         - Forward
         layerMask:
           serializedVersion: 2
-          m_Bits: 33554432
+          m_Bits: 37748736
         sortingCriteria: 59
         overrideMaterial: {fileID: 0}
         overrideMaterialPassIndex: 0
