@@ -9,10 +9,16 @@ public class RoomChunk : MonoBehaviour
     public GridLevel level = default;
     public Vector2 gridCoords = default;
     public Transform[] _itemHandles;
-    public Item[] _items;
+    private Item[] _items;
 
     [HideInInspector] public bool comptoir = false;
     #endregion
+
+    public void Start () {
+        foreach (Transform t in _itemHandles) {
+            t.gameObject.SetActive(false);
+        }
+    }
 
     #region Functions
     public void MoveToNewPosition(Vector2 newCoords, float chunkSize)
@@ -25,6 +31,18 @@ public class RoomChunk : MonoBehaviour
         transform.DOMove(new Vector3(newCoords.x, 0, newCoords.y) * chunkSize, level.chunkMoveTime * (1 / level.speedTestModifier)).OnComplete(OnMoveComplete);
     }
 
+    public void SetItems (Item[] items) {
+        _items = items;
+    }
+    public bool HasItems () {
+        if (_items == null) {
+            return false;
+        }
+        if (_items.Length == 0) {
+            return false;
+        }
+        return true;        
+    }
     public Item[] GetItems()
     {
         return _items;
