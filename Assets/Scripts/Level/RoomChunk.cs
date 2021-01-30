@@ -40,4 +40,15 @@ public class RoomChunk : MonoBehaviour
         }
     }
     #endregion
+    [ContextMenu("Auto_Fill_Items")]
+    public void Auto_Fill_Items () {
+        List<Item> items = new List<Item>();
+        foreach(Transform t in transform) {
+            Item i = t.GetComponent<Item>();
+            if (i  != null) {
+                items.Add(i);
+            }
+        }
+        _items = items.ToArray();
+    }
 }

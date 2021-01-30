@@ -67,6 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 0}
   gridCoords: {x: 0, y: 0}
+  _items: []
 --- !u!1001 &1300413772862577975
 PrefabInstance:
   m_ObjectHideFlags: 0
