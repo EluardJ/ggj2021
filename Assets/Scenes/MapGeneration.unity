@@ -152,10 +152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridDimensions: 3
+  wallPrefab: {fileID: 3732924127487221211, guid: 4d3cb4a0fee796b488235e4a49644a05,
+    type: 3}
   chunkPrefabs:
   - {fileID: 5602484952419214300, guid: 9485057f42afdf3429f3c54724003019, type: 3}
   - {fileID: 5602484952419214300, guid: 88b131ec0fe233c4283f6fc2d82d64d6, type: 3}
-  chunkSize: 10
+  chunkSize: 11
 --- !u!4 &56667803
 Transform:
   m_ObjectHideFlags: 0
