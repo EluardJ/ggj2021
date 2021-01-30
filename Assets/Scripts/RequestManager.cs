@@ -52,6 +52,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                     GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
                     itemGameObject.transform.position = t.position;
                     itemGameObject.transform.rotation = t.rotation;
+                    itemGameObject.transform.parent = t.parent;
                     Item newItem = itemGameObject.GetComponent<Item>();
                     newItem.SetRequestManager(this);
                     items.Add(newItem);
@@ -140,7 +141,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         itemCopy.transform.localScale = Vector3.one;
         itemCopy.transform.localPosition = Vector3.zero;
         Vector3 rot = new Vector3(0, 360, 0);
-        itemCopy.transform.DORotate(rot, 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        // itemCopy.transform.DORotate(rot, 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
 
 
 
