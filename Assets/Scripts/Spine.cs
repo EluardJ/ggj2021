@@ -47,9 +47,19 @@ public class Spine : MonoBehaviour
             go.transform.localPosition = new Vector3(0, 0.03f * i, 0);
             go.name = "Spine_Part" + (i%2==0?"A":"B") + "_" + i/2;
         }
-
-
     }
-
+    [ContextMenu("Generate10More")]
+    public void Generate10More () {
+        GameObject initPart1 = _spineParts[_spineParts.Length-2];
+        GameObject initPart2 = _spineParts[_spineParts.Length-1];
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject go = Instantiate((i%2==0)?initPart1:initPart2);
+            go.transform.parent = initPart2.transform.parent;
+            go.transform.SetAsLastSibling();
+            go.transform.localPosition = initPart2.transform.localPosition + new Vector3(0, 0.03f * (i+1), 0);
+            // go.name = "Spine_Part" + (i%2==0?"A":"B") + "_" + i/2;
+        }
+    }
     
 }
