@@ -69,8 +69,16 @@ MonoBehaviour:
   seeThroughwallPrefab: {fileID: 3732924127487221211, guid: bd1ecc102b6d76f4996ba5c02c5c5433,
     type: 3}
   chunkPrefabs:
-  - {fileID: 5602484952419214300, guid: 9485057f42afdf3429f3c54724003019, type: 3}
-  - {fileID: 5602484952419214300, guid: 88b131ec0fe233c4283f6fc2d82d64d6, type: 3}
+  - {fileID: 7131070597271354319, guid: 7f56a8ce57ebe8140890ecee492216aa, type: 3}
+  - {fileID: 8469235242942676435, guid: 0ea420f57c66d484b8edd7ca67f08f17, type: 3}
+  - {fileID: 1840012181037002868, guid: b7cc6e7f747985a4187159eb1e5e1a94, type: 3}
+  - {fileID: 5918984311031044851, guid: c012e31f40bc8d446b390bc644cc80dd, type: 3}
+  - {fileID: 3994988838228914877, guid: 3e8fd934896dd4148a16d56c42f7d51b, type: 3}
+  - {fileID: 3822428680782883991, guid: 68633f4d0b0fad3439e9f35aed8da4f2, type: 3}
+  - {fileID: 4727341470377213083, guid: 15416853488539d41907b75ce59292ae, type: 3}
+  - {fileID: 4727341470377213083, guid: e65e1f71982f09a40b8f242088a0b9df, type: 3}
+  - {fileID: 5503103792293643903, guid: d7ca82a45d557074ea08aa94f1fce880, type: 3}
+  - {fileID: 1349151328383740834, guid: 41e0d72747e239147bd23bcbe1fde2b5, type: 3}
   comptoirPrefab: {fileID: 5576822841205726220, guid: 648c1d86f96cc944fae41ecd46119a64,
     type: 3}
   chunkSize: 11
