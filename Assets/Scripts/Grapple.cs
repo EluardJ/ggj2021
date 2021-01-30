@@ -7,12 +7,14 @@ using DG.Tweening;
 public class Grapple : MonoBehaviour
 {
     #region Variables
+    [Header("---Values---")]
     public float speed = 1;
     public float comeBackSpeed = 1;
     public float distance = 1;
     public float minRopeLength = 0.2f;
 
-    [SerializeField] Transform hook = default;
+    [SerializeField] Hook hook = default;
+    [SerializeField] Transform hookTrf = default;
     [SerializeField] Rigidbody hookRB = default;
     [SerializeField] Collider hookCollider = default;
     [SerializeField] Transform player = default;
@@ -44,25 +46,26 @@ public class Grapple : MonoBehaviour
 
     private IEnumerator LaunchGrappleIE()
     {
-        hook.parent = null;
+        hookTrf.parent = null;
         hookRB.isKinematic = true;
-        hookCollider.enabled = true;
+        //hookCollider.enabled = true;
+        hook.Activate();
 
         Vector3 target = player.position + player.forward * distance;
         target.y = hookHolder.position.y;
 
-        Vector3 lastPosition = hook.position;
+        Vector3 lastPosition = hookTrf.position;
 
         while (true)
         {
-            Vector3 newPos = Vector3.MoveTowards(hook.position, target, speed * Time.fixedDeltaTime);
+            Vector3 newPos = Vector3.MoveTowards(hookTrf.position, target, speed * Time.fixedDeltaTime);
             hookRB.MovePosition(newPos);
 
-            float length = Vector3.Distance(lastPosition, hook.position);
-            lastPosition = hook.position;
+            float length = Vector3.Distance(lastPosition, hookTrf.position);
+            lastPosition = hookTrf.position;
             cursor.ChangeLength(rope.restLength + length / 2f);
 
-            if (Vector3.Distance(hook.position, target) < 0.001f)
+            if (Vector3.Distance(hookTrf.position, target) < 0.001f)
                 break;
 
             yield return new WaitForFixedUpdate();
@@ -87,15 +90,15 @@ public class Grapple : MonoBehaviour
 
         cursor.ChangeLength(minRopeLength);
 
-        hookCollider.enabled = false;
-        hookRB.isKinematic = true;
-        //hook.DORotate(hookHolder.forward, 0.2f);
-        //hook.DOMove(hookHolder.position + hookHolder.forward * 0.5f, 0.2f).OnComplete(RetrieveHook);
+        //hookCollider.enabled = false;
+        //hookRB.isKinematic = true;
+        //hookTrf.DORotate(hookHolder.forward, 0.2f);
+        //hookTrf.DOMove(hookHolder.position + hookHolder.forward * 0.5f, 0.2f).OnComplete(RetrieveHook);
     }
 
     //private void RetrieveHook()
     //{
-    //    hook.parent = hookHolder;
+    //    hookTrf.parent = hookHolder;
     //}
     #endregion
 }
