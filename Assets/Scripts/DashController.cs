@@ -33,7 +33,11 @@ public class DashController : MonoBehaviour, IController
         }
         if (dashWasPressed) 
         {
-            deshVelocity = new Vector3(horizontal, 0, vertical) * speed;
+            Vector3 dashDirection = new Vector3(horizontal, 0, vertical);
+            if (horizontal <= 0.1f && vertical <= 0.1f) {
+                dashDirection = transform.forward;
+            }
+            deshVelocity = dashDirection * speed;
             dashWasPressed = false;
             consumeTime = Time.time;
         }
@@ -43,10 +47,5 @@ public class DashController : MonoBehaviour, IController
     }
     public void FixedUpdateController()
     {  
-        // if (dashWasPressed) {
-        //     body.AddForce(new Vector3(horizontal, 0, vertical) * speed, ForceMode.Impulse);
-        //     dashWasPressed = false;
-        //     consumeTime = Time.time;
-        // }
     }
 }
