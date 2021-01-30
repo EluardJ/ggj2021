@@ -7,6 +7,7 @@ public class Thrower : MonoBehaviour
 {
     [SerializeField] float throwPower = 1;
     [SerializeField] float maxChargeTime = 1;
+    [SerializeField] float upwardModifier = 1;
 
     Grapple grapple = default;
 
@@ -58,7 +59,14 @@ public class Thrower : MonoBehaviour
     {
         float chargeAmount = charge / maxChargeTime;
 
-        grapple.Throw(throwPower * chargeAmount);
+        Vector3 playerTweakedPosition = grapple.player.position;
+        playerTweakedPosition.y = grapple.hookHolder.position.y + upwardModifier;
+        Debug.Log("<color=green>" + playerTweakedPosition + "</color>");
+        Vector3 direction = (grapple.player.position - grapple.hookTrf.position).normalized;
+
+        Debug.Log(direction);
+
+        grapple.Throw((throwPower * chargeAmount) * direction);
 
         isCharging = false;
 

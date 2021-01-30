@@ -111,13 +111,9 @@ public class Grapple : MonoBehaviour
         //hookTrf.DOMove(hookHolder.position + hookHolder.forward * 0.5f, 0.2f).OnComplete(RetrieveHook);
     }
 
-    public void Throw(float force)
+    public void Throw(Vector3 force)
     {
-        Vector3 hookTweakedPosition = hookTrf.position;
-        hookTweakedPosition.y = hookHolder.position.y + 0.75f;
-        Vector3 direction = (player.position - hookTweakedPosition).normalized;
-
-        hook.Throw(direction, force);
+        hook.Throw(force);
 
         isGrabbing = false;
     }

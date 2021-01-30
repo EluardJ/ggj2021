@@ -36,7 +36,8 @@ public class Hook : MonoBehaviour
         if (comptoirChunk != null && grabbedItem != null)
         {
             bool hasBeenDropped = comptoirChunk.OnItemEnter(grabbedItem);
-            if (hasBeenDropped) {
+            if (hasBeenDropped)
+            {
                 DropItem();
                 if (grapple != null)
                 {
@@ -73,7 +74,7 @@ public class Hook : MonoBehaviour
         grapple.Grab();
     }
 
-    public void Throw(Vector3 throwDirection, float throwForce)
+    public void Throw(Vector3 force)
     {
         Movable movable = grabbedObject.GetComponent<Movable>();
         if (movable != null)
@@ -84,7 +85,7 @@ public class Hook : MonoBehaviour
 
         Rigidbody otherRB = grabbedObject.AddComponent<Rigidbody>();
         otherRB.mass = grabbedMass;
-        otherRB.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+        otherRB.AddForce(force, ForceMode.Impulse);
 
         isHoldingSomething = false;
     }
