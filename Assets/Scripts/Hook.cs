@@ -25,13 +25,6 @@ public class Hook : MonoBehaviour
         if (isActive && !isHoldingSomething && collision.gameObject.CompareTag("Movable"))
             Grab(collision.transform, collision.GetContact(0).normal);
     }
-    #endregion
-
-    #region Functions
-    public void ToggleActivate(bool activate)
-    {
-        isActive = activate;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,10 +38,18 @@ public class Hook : MonoBehaviour
         {
             comptoirChunk.OnItemEnter(grabbedItem);
             DropItem();
-            if (grapple != null) {
+            if (grapple != null)
+            {
                 grapple.Drop();
             }
         }
+    }
+    #endregion
+
+    #region Functions
+    public void ToggleActivate(bool activate)
+    {
+        isActive = activate;
     }
 
     private void Grab(Transform objectToGrab, Vector3 contactNormal)
@@ -57,7 +58,8 @@ public class Hook : MonoBehaviour
         isActive = false;
         grabbedObject = objectToGrab.gameObject;
 
-        transform.rotation.SetLookRotation(contactNormal);
+        contactNormal = (objectToGrab.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(contactNormal);
 
         objectToGrab.parent = transform;
         Rigidbody otherRB = objectToGrab.GetComponent<Rigidbody>();
@@ -81,8 +83,10 @@ public class Hook : MonoBehaviour
 
         isHoldingSomething = false;
     }
-    public void DropItem () {
-        if (isHoldingSomething) {
+    public void DropItem()
+    {
+        if (isHoldingSomething)
+        {
             hookRb.mass -= grabbedMass;
         }
         isHoldingSomething = false;

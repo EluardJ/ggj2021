@@ -9,6 +9,7 @@ public class GridGenerator : MonoBehaviour
     public int gridDimensions = 3;
     [SerializeField] GameObject wallPrefab = default;
     [SerializeField] GameObject[] chunkPrefabs = default;
+    [SerializeField] GameObject comptoirPrefab = default;
     [SerializeField] float chunkSize = 10;
     public bool _useAutoGeneration = true;
 
@@ -42,13 +43,29 @@ public class GridGenerator : MonoBehaviour
         gridLevel.gridDimensions = gridDimensions;
         gridLevel.chunkSize = chunkSize;
         gridLevel.chunkPrefabs = chunkPrefabs;
+        gridLevel.comptoirPrefab = comptoirPrefab;
+
+        int comptoirI = Random.Range(0, gridDimensions);
+        int comptoirJ = Random.Range(0, gridDimensions);
 
         for (int i = 0; i < gridDimensions; i++)
         {
             for (int j = 0; j < gridDimensions; j++)
             {
                 Vector3 position = new Vector3(chunkSize * i, 0, chunkSize * j);
-                GameObject go = Instantiate(chunkPrefabs[Random.Range(0, chunkPrefabs.Length)], position, Quaternion.identity);
+
+                GameObject go = null;
+                if (i == comptoirI && j == comptoirJ)
+                {
+                    go = Instantiate(comptoirPrefab, position, Quaternion.identity);
+                    go.GetComponent<RoomChunk>().comptoir = true;
+                    gridLevel.comptoirCoordinates = new Vector2(i, j);
+                }
+                else
+                {
+                    go = Instantiate(chunkPrefabs[Random.Range(0, chunkPrefabs.Length)], position, Quaternion.identity);
+                }
+
                 RoomChunk chunk = go.GetComponent<RoomChunk>();
 
                 Vector2 gridCoords = new Vector2(i, j);
