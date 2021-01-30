@@ -37,6 +37,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                 Item[] chunkItems = chunk.GetItems(); 
 
                 foreach (Transform t in chunk.GetItemHandles()) {
+                    t.gameObject.SetActive(false);
                     GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
                     itemGameObject.transform.position = t.position;
                     itemGameObject.transform.rotation = t.rotation;
@@ -71,7 +72,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         }
     }
 
-    public void OnItemDropped (Item item) {   
+    public bool OnItemDropped (Item item) {   
         bool isSuccess = false;     
         foreach (Item currentlyRequestedItem in _currentlyRequestedItems) {
             if (item == currentlyRequestedItem) {
@@ -88,6 +89,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
             PushNextRequest();
             GameObject.Destroy(item.gameObject);
         }
+        return isSuccess;
     }
 
     public void PushNextRequest () {

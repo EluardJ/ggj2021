@@ -35,11 +35,13 @@ public class Hook : MonoBehaviour
         Item grabbedItem = grabbedObject.GetComponent<Item>();
         if (comptoirChunk != null && grabbedItem != null)
         {
-            comptoirChunk.OnItemEnter(grabbedItem);
-            DropItem();
-            if (grapple != null)
-            {
-                grapple.Drop();
+            bool hasBeenDropped = comptoirChunk.OnItemEnter(grabbedItem);
+            if (hasBeenDropped) {
+                DropItem();
+                if (grapple != null)
+                {
+                    grapple.Drop();
+                }
             }
         }
     }
