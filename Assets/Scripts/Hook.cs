@@ -38,6 +38,19 @@ public class Hook : MonoBehaviour
         isActive = activate;
     }
 
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (grabbedObject == null) {
+            return;
+        }
+        ComptoirChunk comptoirChunk = other.GetComponent<ComptoirChunk>();
+        Item grabbedItem = grabbedObject.GetComponent<Item>();
+        if (comptoirChunk != null && grabbedItem != null) {
+            comptoirChunk.OnItemEnter(grabbedItem);
+        }
+    }
+
     private void Grab(Transform objectToGrab, Vector3 contactNormal)
     {
         isHoldingSomething = true;

@@ -38,6 +38,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoccerBall
       objectReference: {fileID: 0}
+    - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Movable
+      objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_RootOrder

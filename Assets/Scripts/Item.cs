@@ -24,6 +24,10 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("=========>OnTriggerEnter<=========  (" + Time.frameCount + ")");
+        Hook hook = other.attachedRigidbody.GetComponent<Hook>();
+        if (hook != null){
+            Debug.Log("=========>HOOK<=========  (" + Time.frameCount + ")");
+        }
         ComptoirChunk comptoirChunk = other.GetComponent<ComptoirChunk>();
         if (comptoirChunk != null) {
             comptoirChunk.OnItemEnter(this);

@@ -31,7 +31,6 @@ public class ComptoirChunk : RoomChunk
         }
     }
     public void RegisterListener (IComptoirTriggerListener listener) {
-        Debug.Log("=========>RegisterListener<=========  (" + Time.frameCount + ")");
         if (_listeners == null || listener == null) {
             return;
         }
