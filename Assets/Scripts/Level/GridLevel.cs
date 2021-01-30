@@ -6,7 +6,9 @@ public class GridLevel : MonoBehaviour
 {
     #region Variables
     [SerializeField] float autoAddChunkInterval = 3f;
-    [SerializeField] public float speedTestModifier = 3f;
+    [Range(0.1f, 2.5f)]
+    public float chunkMoveTime = 1.5f;
+    [HideInInspector] public float speedTestModifier = 3f;
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();

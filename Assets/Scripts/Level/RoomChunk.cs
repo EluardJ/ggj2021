@@ -22,7 +22,7 @@ public class RoomChunk : MonoBehaviour
 
         gridCoords = newCoords;
 
-        transform.DOMove(new Vector3(newCoords.x, 0, newCoords.y) * chunkSize, 1.5f * (1 / level.speedTestModifier)).OnComplete(OnMoveComplete);
+        transform.DOMove(new Vector3(newCoords.x, 0, newCoords.y) * chunkSize, level.chunkMoveTime * (1 / level.speedTestModifier)).OnComplete(OnMoveComplete);
     }
 
     public Item[] GetItems()
@@ -30,7 +30,8 @@ public class RoomChunk : MonoBehaviour
         return _items;
     }
 
-    public Transform [] GetItemHandles () {
+    public Transform[] GetItemHandles()
+    {
         return _itemHandles;
     }
 

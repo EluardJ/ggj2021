@@ -17,5 +17,19 @@ public class Movable : MonoBehaviour
     {
         transform.parent = movablesInChunk;
     }
+
+    public void TemporarilyDisableCollisionsWithPlayer()
+    {
+        StartCoroutine(TemporarilyDisableCollisionsWithPlayerIE());
+    }
+
+    private IEnumerator TemporarilyDisableCollisionsWithPlayerIE()
+    {
+        gameObject.layer = 11;
+
+        yield return new WaitForSeconds(1.5f);
+
+        gameObject.layer = 10;
+    }
     #endregion
 }

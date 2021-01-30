@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5333881938018119766}
   - component: {fileID: 5333881938018119775}
+  - component: {fileID: 1211507249495989182}
   - component: {fileID: 5333881938018119774}
   - component: {fileID: 5333881938018119769}
   - component: {fileID: 5333881938018119768}
@@ -58,10 +59,26 @@ MonoBehaviour:
   distance: 3
   minRopeLength: 1
   hook: {fileID: 0}
+  thrower: {fileID: 0}
   hookTrf: {fileID: 0}
   hookRB: {fileID: 0}
   player: {fileID: 0}
   hookHolder: {fileID: 0}
+  isGrabbing: 0
+--- !u!114 &1211507249495989182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5333881938018119761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e3d40bfec612145bb726fad17c30a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwPower: 100
+  maxChargeTime: 2
 --- !u!114 &5333881938018119774
 MonoBehaviour:
   m_ObjectHideFlags: 0
