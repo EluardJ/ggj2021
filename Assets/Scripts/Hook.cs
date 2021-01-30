@@ -49,6 +49,10 @@ public class Hook : MonoBehaviour
         if (comptoirChunk != null && grabbedItem != null) {
             comptoirChunk.OnItemEnter(grabbedItem);
         }
+        DropItem();
+        if (grapple != null) {
+            grapple.Drop();
+        }
     }
 
     private void Grab(Transform objectToGrab, Vector3 contactNormal)
@@ -81,6 +85,10 @@ public class Hook : MonoBehaviour
         otherRB.AddForce(throwDirection * throwForce, ForceMode.Impulse);
 
         isHoldingSomething = false;
+    }
+    public void DropItem () {
+        isHoldingSomething = false;
+        grabbedObject = null;
     }
     #endregion
 }

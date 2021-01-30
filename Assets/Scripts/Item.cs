@@ -24,7 +24,10 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("=========>OnTriggerEnter<=========  (" + Time.frameCount + ")");
-        Hook hook = other.attachedRigidbody.GetComponent<Hook>();
+        Hook hook = null;
+        if (other.attachedRigidbody != null) {
+            hook = other.attachedRigidbody.GetComponent<Hook>();
+        }
         if (hook != null){
             Debug.Log("=========>HOOK<=========  (" + Time.frameCount + ")");
         }

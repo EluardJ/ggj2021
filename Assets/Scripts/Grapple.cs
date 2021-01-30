@@ -123,7 +123,9 @@ public class Grapple : MonoBehaviour
     //{
     //    hookTrf.parent = hookHolder;
     //}
-
+    public void Drop () {
+        isGrabbing = false;
+    }
     public void Grab()
     {
         isGrabbing = true;
