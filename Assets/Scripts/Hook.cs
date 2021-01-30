@@ -7,7 +7,6 @@ public class Hook : MonoBehaviour
     #region Variables
     public bool isHoldingSomething = false;
 
-    [SerializeField] float throwForce = 0;
     [SerializeField] Transform hookParent = default;
     [SerializeField] PhysicMaterial draggedObjectMaterial = default;
     [SerializeField] Rigidbody hookRb = default;
@@ -72,8 +71,12 @@ public class Hook : MonoBehaviour
         grapple.Grab();
     }
 
-    public void Throw(Vector3 throwDirection)
+    public void Throw(Vector3 throwDirection, float throwForce)
     {
+        Movable movable = grabbedObject.GetComponent<Movable>();
+        if (movable != null)
+            movable.TemporarilyDisableCollisionsWithPlayer();
+
         hookRb.mass -= grabbedMass;
         grabbedObject.transform.parent = null;
 
