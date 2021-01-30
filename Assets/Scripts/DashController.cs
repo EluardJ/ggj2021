@@ -26,17 +26,14 @@ public class DashController : MonoBehaviour, IController
         horizontal = Input.GetAxisRaw("LookHorizontal");
         vertical = Input.GetAxisRaw("LookVertical"); 
         Vector3 look = new Vector3(horizontal, 0, vertical);
-        dashWasPressed = dashWasPressed || Input.GetButtonDown("Fire4");
+        dashWasPressed = dashWasPressed || Input.GetButtonDown("Fire1");
         if (Time.time < consumeTime + cooldown) 
         {
             dashWasPressed = false;
         }
         if (dashWasPressed) 
         {
-            Vector3 dashDirection = new Vector3(horizontal, 0, vertical);
-            if (Mathf.Abs(horizontal) <= 0.1f && Mathf.Abs(vertical) <= 0.1f) {
-                dashDirection = transform.forward;
-            }
+            Vector3 dashDirection = transform.forward;
             deshVelocity = dashDirection * speed;
             dashWasPressed = false;
             consumeTime = Time.time;

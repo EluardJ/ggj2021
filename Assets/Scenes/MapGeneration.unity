@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6578824690a6e3147912efb316fa8d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridDimensions: 3
+  gridDimensions: 5
   wallPrefab: {fileID: 3732924127487221211, guid: 4d3cb4a0fee796b488235e4a49644a05,
     type: 3}
   chunkPrefabs:

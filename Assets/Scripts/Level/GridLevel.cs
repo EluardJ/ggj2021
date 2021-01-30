@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridLevel : MonoBehaviour
 {
     #region Variables
+    [SerializeField] float autoAddChunkInterval = 3f;
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
@@ -23,10 +24,10 @@ public class GridLevel : MonoBehaviour
 
         elapedTimeSinceChange += Time.deltaTime;
 
-        if (elapedTimeSinceChange > 5)
+        if (elapedTimeSinceChange > autoAddChunkInterval)
         {
-            AddChunkAtRandom();
             elapedTimeSinceChange = 0;
+            AddChunkAtRandom();
         }
     }
     #endregion
@@ -34,11 +35,6 @@ public class GridLevel : MonoBehaviour
     #region Functions
     private void AddChunkAtRandom()
     {
-        foreach (KeyValuePair<Vector2, Wall> wall in walls)
-        {
-            Debug.Log(wall.Key);
-        }
-
         bool horizontal = true;
         Vector2 spawnPosition = GetRandomSpawnPosition(ref horizontal);
 
@@ -63,13 +59,22 @@ public class GridLevel : MonoBehaviour
                 RoomChunk chunk = chunks[new Vector2(i, newChunk.gridCoords.y)];
                 Vector2 nextCoords = positive ? chunk.gridCoords + Vector2.left : chunk.gridCoords + Vector2.right;
                 chunk.MoveToNewPosition(nextCoords, chunkSize);
+
+                if (positive)
+                {
+                    if (i == 0)
+                        walls[nextCoords].GetUp();
+                }
+                else
+                {
+                    if (i == gridDimensions - 1)
+                        walls[nextCoords].GetUp();
+                }
             }
 
             Vector2 newCoords = positive ? newChunk.gridCoords + Vector2.left : newChunk.gridCoords + Vector2.right;
 
-            Debug.Log("new chunk : " + newChunk.gridCoords);
             walls[newChunk.gridCoords].GetUp();
-
             newChunk.MoveToNewPosition(newCoords, chunkSize);
         }
         else
@@ -81,10 +86,22 @@ public class GridLevel : MonoBehaviour
                 RoomChunk chunk = chunks[new Vector2(newChunk.gridCoords.x, i)];
                 Vector2 nextCoords = positive ? chunk.gridCoords + Vector2.down : chunk.gridCoords + Vector2.up;
                 chunk.MoveToNewPosition(nextCoords, chunkSize);
+
+                if (positive)
+                {
+                    if (i == 0)
+                        walls[nextCoords].GetUp();
+                }
+                else
+                {
+                    if (i == gridDimensions - 1)
+                        walls[nextCoords].GetUp();
+                }
             }
 
             Vector2 newCoords = positive ? newChunk.gridCoords + Vector2.down : newChunk.gridCoords + Vector2.up;
 
+            walls[newChunk.gridCoords].GetUp();
             newChunk.MoveToNewPosition(newCoords, chunkSize);
         }
     }
