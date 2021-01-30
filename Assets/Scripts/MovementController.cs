@@ -16,11 +16,16 @@ public class MovementController : MonoBehaviour, IController
     public bool isDrifting;
     public float _driftThreshold = 0.7f;
     public ParticleSystem[] _driftEffects;
+    public TrailRenderer[] _driftTrails;
+    private TrailRenderer[] _currentDriftEffects;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody>(); 
         dashController = GetComponent<DashController>();
+        foreach (TrailRenderer trailRenderer in _driftTrails) {
+            trailRenderer.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -41,12 +46,30 @@ public class MovementController : MonoBehaviour, IController
             foreach (ParticleSystem effect in _driftEffects) {
                 effect.Stop();
             }
+            for (int i = 0; i < _currentDriftEffects.Length; i++)
+            {
+                _currentDriftEffects[i].transform.parent = null;
+                GameObject.Destroy(_currentDriftEffects[i].gameObject, _currentDriftEffects[i].time + 1f);
+            }
+            
         }
         else if (!wasDrifting && isDrifting) {
             //enter drift
             foreach (ParticleSystem effect in _driftEffects) {
                 effect.Play();
             }
+
+            _currentDriftEffects = new TrailRenderer[_driftTrails.Length];
+            for (int i = 0; i < _driftTrails.Length; i++)
+            {
+                _currentDriftEffects[i] = GameObject.Instantiate(_driftTrails[i]);
+                _currentDriftEffects[i].transform.parent = _driftTrails[i].transform.parent;
+                _currentDriftEffects[i].transform.localPosition = _driftTrails[i].transform.localPosition;
+                _currentDriftEffects[i].transform.localRotation = _driftTrails[i].transform.localRotation;
+                _currentDriftEffects[i].transform.localScale = _driftTrails[i].transform.localScale;
+                _currentDriftEffects[i].gameObject.SetActive(true);
+            }
+
         }
     }
     public void FixedUpdateController()

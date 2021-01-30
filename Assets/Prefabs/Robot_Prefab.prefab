@@ -1471,7 +1471,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3098269451520564675}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 0.25
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -7602,7 +7602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5349045658233011960}
   m_LocalRotation: {x: 0.49999997, y: -0.50000006, z: 0.4999985, w: 0.50000155}
-  m_LocalPosition: {x: -0.47099972, y: -0.444, z: -0.10099983}
+  m_LocalPosition: {x: -0.47099972, y: -0.4, z: -0.10099983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3653931357417289823}
@@ -9591,9 +9591,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a48a82916c8e040b63a2236e66db53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: 250
   cooldown: 1.59
-  decay: 30
+  decay: 100
 --- !u!114 &7477462267796333183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9609,9 +9609,11 @@ MonoBehaviour:
   runSpeed: 18
   maxRotationDelta: 3.5
   isDrifting: 0
-  _driftEffects:
-  - {fileID: 7675049109820026968}
-  - {fileID: 3972999147009961613}
+  _driftThreshold: 0.7
+  _driftEffects: []
+  _driftTrails:
+  - {fileID: 5152586592664758530}
+  - {fileID: 5000465948228739475}
 --- !u!114 &6239889121022621659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9952,7 +9954,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8601574616653529878}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 0.25
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
