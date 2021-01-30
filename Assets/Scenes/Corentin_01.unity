@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.3371, g: 325.05005, b: 430.21954, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -392,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367767302}
   m_LocalRotation: {x: 0.42027238, y: -0.000000021281602, z: 0.000000009856832, w: 0.90739805}
-  m_LocalPosition: {x: -0.89948726, y: 13.41876, z: -2.5800035}
+  m_LocalPosition: {x: -0.8994873, y: 13.41876, z: -2.5800035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1147008674}
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef4cb15fa7acfe499a26fa35eeeb2ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoAddChunkInterval: 4
+  autoAddChunkInterval: 15
   gridDimensions: 3
   chunkSize: 10
   chunkPrefabs: []
@@ -963,7 +963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574239410}
   m_LocalRotation: {x: 0.42027238, y: -0.000000021281602, z: 0.000000009856832, w: 0.90739805}
-  m_LocalPosition: {x: -0.89948726, y: 13.41876, z: -2.5800035}
+  m_LocalPosition: {x: -0.8994873, y: 13.41876, z: -2.5800035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -976,6 +976,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3972999147009961613, guid: d131f59d3b069c342890d1e312d5450d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972999147009961613, guid: d131f59d3b069c342890d1e312d5450d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132939006038108058, guid: d131f59d3b069c342890d1e312d5450d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3183407afc838b04287d91255550ef3d, type: 2}
     - target: {fileID: 7477462267796333120, guid: d131f59d3b069c342890d1e312d5450d,
         type: 3}
       propertyPath: m_RootOrder
@@ -1045,6 +1060,16 @@ PrefabInstance:
         type: 3}
       propertyPath: maxRotationDelta
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675049109820026968, guid: d131f59d3b069c342890d1e312d5450d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675049109820026968, guid: d131f59d3b069c342890d1e312d5450d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d131f59d3b069c342890d1e312d5450d, type: 3}
