@@ -961,7 +961,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 70.995, y: -107.91701, z: -56.342003}
 --- !u!1001 &577333022
 PrefabInstance:
@@ -1309,7 +1309,7 @@ PrefabInstance:
     - target: {fileID: 6777317656061746216, guid: c012e31f40bc8d446b390bc644cc80dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 34
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 6777317656061746216, guid: c012e31f40bc8d446b390bc644cc80dd,
         type: 3}
@@ -1378,7 +1378,7 @@ PrefabInstance:
     - target: {fileID: 4072892454836897633, guid: 4d3cb4a0fee796b488235e4a49644a05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4072892454836897633, guid: 4d3cb4a0fee796b488235e4a49644a05,
         type: 3}
@@ -2719,7 +2719,7 @@ Transform:
   m_LocalScale: {x: 265.91913, y: 0.2, z: 249.335}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1671637150
 PrefabInstance:
@@ -3238,6 +3238,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477462267796333182, guid: d131f59d3b069c342890d1e312d5450d,
+        type: 3}
+      propertyPath: decay
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477462267796333182, guid: d131f59d3b069c342890d1e312d5450d,
+        type: 3}
+      propertyPath: speed
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7477462267796333183, guid: d131f59d3b069c342890d1e312d5450d,
         type: 3}
