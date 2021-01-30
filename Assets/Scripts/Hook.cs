@@ -44,10 +44,10 @@ public class Hook : MonoBehaviour
         if (comptoirChunk != null && grabbedItem != null)
         {
             comptoirChunk.OnItemEnter(grabbedItem);
-        }
-        DropItem();
-        if (grapple != null) {
-            grapple.Drop();
+            DropItem();
+            if (grapple != null) {
+                grapple.Drop();
+            }
         }
     }
 
@@ -82,6 +82,9 @@ public class Hook : MonoBehaviour
         isHoldingSomething = false;
     }
     public void DropItem () {
+        if (isHoldingSomething) {
+            hookRb.mass -= grabbedMass;
+        }
         isHoldingSomething = false;
         grabbedObject = null;
     }
