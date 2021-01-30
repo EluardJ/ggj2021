@@ -13,15 +13,17 @@ public class Grapple : MonoBehaviour
     public float distance = 1;
     public float minRopeLength = 0.2f;
 
+    [Header("---Refs---")]
     [SerializeField] Hook hook = default;
     [SerializeField] Transform hookTrf = default;
     [SerializeField] Rigidbody hookRB = default;
-    [SerializeField] Collider hookCollider = default;
     [SerializeField] Transform player = default;
     [SerializeField] Transform hookHolder = default;
 
     ObiRopeCursor cursor;
     ObiRope rope;
+
+    bool isGrabbing = false;
     #endregion
 
     #region Unity Callbacks
@@ -29,12 +31,18 @@ public class Grapple : MonoBehaviour
     {
         cursor = GetComponent<ObiRopeCursor>();
         rope = cursor.GetComponent<ObiRope>();
+        hook.grapple = this;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire3"))
-            LaunchGrapple();
+        if (Input.GetButtonDown("Fire3"))
+        {
+            if (isGrabbing)
+                Throw();
+            else
+                LaunchGrapple();
+        }
     }
     #endregion
 
@@ -49,7 +57,7 @@ public class Grapple : MonoBehaviour
         hookTrf.parent = null;
         hookRB.isKinematic = true;
         //hookCollider.enabled = true;
-        hook.Activate();
+        hook.ToggleActivate(true);
 
         Vector3 target = player.position + player.forward * distance;
         target.y = hookHolder.position.y;
@@ -72,12 +80,18 @@ public class Grapple : MonoBehaviour
         }
 
         hookRB.isKinematic = false;
+        hook.ToggleActivate(false);
 
         StartCoroutine(RetrieveGrappleIE());
     }
 
     private IEnumerator RetrieveGrappleIE()
     {
+        if (!hook.isHoldingSomething)
+            minRopeLength = 0.5f;
+        else
+            minRopeLength = 1;
+
         while (rope.restLength > minRopeLength)
         {
             float newLength = rope.restLength - comeBackSpeed * Time.deltaTime;
@@ -96,9 +110,23 @@ public class Grapple : MonoBehaviour
         //hookTrf.DOMove(hookHolder.position + hookHolder.forward * 0.5f, 0.2f).OnComplete(RetrieveHook);
     }
 
+    private void Throw()
+    {
+        Vector3 direction = (player.position - hookTrf.position).normalized;
+
+        hook.Throw(direction + Vector3.up * 0.5f);
+
+        isGrabbing = false;
+    }
+
     //private void RetrieveHook()
     //{
     //    hookTrf.parent = hookHolder;
     //}
+
+    public void Grab()
+    {
+        isGrabbing = true;
+    }
     #endregion
 }
