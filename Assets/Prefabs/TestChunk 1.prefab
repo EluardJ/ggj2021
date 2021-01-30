@@ -194,6 +194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 0}
   gridCoords: {x: 0, y: 0}
+  _itemHandles: []
+  _items: []
+  comptoir: 0
 --- !u!64 &9132259659324315781
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -12,7 +12,9 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
     public GameObject _requestUI_template;
     private List<Item> _currentlyRequestedItems = new List<Item>();
     private Dictionary<Item, RequestUI> _requestUILookup = new Dictionary<Item, RequestUI>();
+    private Dictionary<Transform, Item> _transformToItemLookup = new Dictionary<Transform, Item>();
     private int nextRequestedItemId = 0;
+    private int _count;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,24 +33,48 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                 if (chunk == null) {
                     continue;
                 }
+                if (chunk.HasItems()) {
+                    
+                }
+                else {
+                    // randomize handles.
+                    Transform[] handles = chunk.GetItemHandles();                    
+                    for (int i = 0; i < handles.Length; i++) {
+                        Transform temp = handles[i];
+                        int randomIndex = Random.Range(i, handles.Length);
+                        handles[i] = handles[randomIndex];
+                        handles[randomIndex] = temp;
+                    }
+                    // spawn and set items.
+                    int chunkItemCount = Mathf.Min(handles.Length, 2);
+                    Item[] newChunkItems = new Item[chunkItemCount];
+                    for (int i = 0; i < chunkItemCount; i++) {
+                        Transform t = handles[i];
+                        GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
+                        itemGameObject.transform.position = t.position;
+                        itemGameObject.transform.rotation = t.rotation;
+                        itemGameObject.transform.parent = t.parent;
+                        Item newItem = itemGameObject.GetComponent<Item>();
+                        newItem.SetRequestManager(this);
+                        newChunkItems[i] = newItem;
+                        _transformToItemLookup[t] = newItem;
+                    }
+                    chunk.SetItems(newChunkItems);
+
+                }
+
+
+
+
                 if (chunk as ComptoirChunk != null) {
                     (chunk as ComptoirChunk).RegisterListener(this);
                 }
                 Item[] chunkItems = chunk.GetItems(); 
-
-                foreach (Transform t in chunk.GetItemHandles()) {
-                    t.gameObject.SetActive(false);
-                    GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
-                    itemGameObject.transform.position = t.position;
-                    itemGameObject.transform.rotation = t.rotation;
-                    Item newItem = itemGameObject.GetComponent<Item>();
-                    items.Add(newItem);
+                if (chunkItems != null) {
+                    items.AddRange(chunkItems);
                 }
-
-                items.AddRange(chunkItems);
             }
         }
-
         for (int i = 0; i < items.Count; i++) {
             Item temp = items[i];
             int randomIndex = Random.Range(i, items.Count);
@@ -59,6 +85,22 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         _requestedItems = items.ToArray();
     }
 
+    public void SetRequestCount (int count) {
+        _count = count;
+        for (int i = 0; i < count; i++)
+        {   
+            PushNextRequest();
+        }
+    }
+ 
+    public void OnItemDestroyed (Item item) {
+        if (_currentlyRequestedItems != null && _currentlyRequestedItems.Contains(item)) {
+            GameObject.Destroy(_requestUILookup[item].gameObject);
+            _requestUILookup[item] = null;
+            PushNextRequest();
+        }
+    }
+
     public void OnChunckChanged () {
         InitializeRequestItems();
         Item[] currentlyRequestedItems = _currentlyRequestedItems.ToArray();
@@ -67,8 +109,10 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
             Item item  = currentlyRequestedItems[i];
             if (item == null) {
                 _currentlyRequestedItems.Remove(item);
-                PushNextRequest();
             }
+        }
+        for (int i = 0; i < _count - currentlyRequestedItems.Length; i++) {
+            PushNextRequest();
         }
     }
 
@@ -111,7 +155,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         itemCopy.transform.localScale = Vector3.one;
         itemCopy.transform.localPosition = Vector3.zero;
         Vector3 rot = new Vector3(0, 360, 0);
-        itemCopy.transform.DORotate(rot, 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        // itemCopy.transform.DORotate(rot, 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
 
 
 

@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if (_gridGenerator != null) {
+            _gridGenerator._useAutoGeneration = false;
+            _gridGenerator.SetGridLevel(_gridGenerator.GetComponent<GridLevel>());
             _gridGenerator.Generate();
         }
         if (_requestManager != null) {
+            _requestManager._gridLevel = _gridGenerator.GetComponent<GridLevel>();
             _requestManager.InitializeRequestItems();
-            _requestManager.PushNextRequest();
-            _requestManager.PushNextRequest();
-            _requestManager.PushNextRequest();
+            _requestManager.SetRequestCount(3);
         }
     }
 
