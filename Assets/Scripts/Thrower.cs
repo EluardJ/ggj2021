@@ -6,12 +6,14 @@ using UnityEngine;
 public class Thrower : MonoBehaviour
 {
     [SerializeField] float throwPower = 1;
+    [Range(0, 1)]
+    [SerializeField] float minimumPowerRatio = 0.1f;
     [SerializeField] float maxChargeTime = 1;
     [SerializeField] float upwardModifier = 1;
 
     Grapple grapple = default;
 
-    bool isCharging = false;
+    [HideInInspector] public bool isCharging = false;
     float charge = 0;
 
     private void Awake()
@@ -58,18 +60,23 @@ public class Thrower : MonoBehaviour
     private void Throw()
     {
         float chargeAmount = charge / maxChargeTime;
+        chargeAmount = Mathf.Lerp(throwPower * minimumPowerRatio, throwPower, chargeAmount);
 
         Vector3 playerTweakedPosition = grapple.player.position;
         playerTweakedPosition.y = grapple.hookHolder.position.y + upwardModifier;
-        Debug.Log("<color=green>" + playerTweakedPosition + "</color>");
         Vector3 direction = (grapple.player.position - grapple.hookTrf.position).normalized;
 
         Debug.Log(direction);
 
-        grapple.Throw((throwPower * chargeAmount) * direction);
+        grapple.Throw(chargeAmount * direction);
 
         isCharging = false;
 
         Debug.Log("throw : " + throwPower * chargeAmount);
+    }
+
+    public float GetNormalizedCharge()
+    {
+        return charge / maxChargeTime;
     }
 }
