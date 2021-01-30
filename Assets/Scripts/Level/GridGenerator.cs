@@ -14,13 +14,13 @@ public class GridGenerator : MonoBehaviour
     [SerializeField] float chunkSize = 10;
     public bool _useAutoGeneration = true;
 
-    GridLevel gridLevel = default;
+    GridLevel _gridLevel = default;
     #endregion
 
     #region UnityCallbacks
     private void Awake()
     {
-        gridLevel = GetComponent<GridLevel>();
+        _gridLevel = GetComponent<GridLevel>();
     }
 
     private void Start()
@@ -31,7 +31,9 @@ public class GridGenerator : MonoBehaviour
         }
     }
     #endregion
-
+    public void SetGridLevel (GridLevel gridLevel) {
+        _gridLevel = gridLevel;
+    }
     public void Generate()
     {
         GenerateGrid(gridDimensions, chunkSize);
@@ -41,10 +43,10 @@ public class GridGenerator : MonoBehaviour
     #region Functions
     private void GenerateGrid(int gridDimensions, float chunkSize)
     {
-        gridLevel.gridDimensions = gridDimensions;
-        gridLevel.chunkSize = chunkSize;
-        gridLevel.chunkPrefabs = chunkPrefabs;
-        gridLevel.comptoirPrefab = comptoirPrefab;
+        _gridLevel.gridDimensions = gridDimensions;
+        _gridLevel.chunkSize = chunkSize;
+        _gridLevel.chunkPrefabs = chunkPrefabs;
+        _gridLevel.comptoirPrefab = comptoirPrefab;
 
         int comptoirI = Random.Range(0, gridDimensions);
         int comptoirJ = Random.Range(0, gridDimensions);
@@ -60,7 +62,7 @@ public class GridGenerator : MonoBehaviour
                 {
                     go = Instantiate(comptoirPrefab, position, Quaternion.identity);
                     go.GetComponent<RoomChunk>().comptoir = true;
-                    gridLevel.comptoirCoordinates = new Vector2(i, j);
+                    _gridLevel.comptoirCoordinates = new Vector2(i, j);
                 }
                 else
                 {
@@ -70,10 +72,10 @@ public class GridGenerator : MonoBehaviour
                 RoomChunk chunk = go.GetComponent<RoomChunk>();
 
                 Vector2 gridCoords = new Vector2(i, j);
-                chunk.level = gridLevel;
+                chunk.level = _gridLevel;
                 chunk.gridCoords = gridCoords;
 
-                gridLevel.chunks.Add(gridCoords, chunk);
+                _gridLevel.chunks.Add(gridCoords, chunk);
             }
         }
     }
@@ -84,28 +86,28 @@ public class GridGenerator : MonoBehaviour
         {
             Vector3 spawnPosition = new Vector3(i * chunkSize, 0, -chunkSize / 2);
             GameObject go = Instantiate(seeThroughwallPrefab, spawnPosition, Quaternion.identity);
-            gridLevel.walls.Add(new Vector2(i, -1), go.GetComponent<Wall>());
+            _gridLevel.walls.Add(new Vector2(i, -1), go.GetComponent<Wall>());
         }
 
         for (int i = 0; i < gridDimensions; i++)
         {
             Vector3 spawnPosition = new Vector3(i * chunkSize, 0, (gridDimensions * chunkSize) - chunkSize / 2);
             GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, 180, 0));
-            gridLevel.walls.Add(new Vector2(i, gridDimensions), go.GetComponent<Wall>());
+            _gridLevel.walls.Add(new Vector2(i, gridDimensions), go.GetComponent<Wall>());
         }
 
         for (int i = 0; i < gridDimensions; i++)
         {
             Vector3 spawnPosition = new Vector3((gridDimensions * chunkSize) - chunkSize / 2, 0, i * chunkSize);
             GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, -90, 0));
-            gridLevel.walls.Add(new Vector2(gridDimensions, i), go.GetComponent<Wall>());
+            _gridLevel.walls.Add(new Vector2(gridDimensions, i), go.GetComponent<Wall>());
         }
 
         for (int i = 0; i < gridDimensions; i++)
         {
             Vector3 spawnPosition = new Vector3(-chunkSize / 2, 0, i * chunkSize);
             GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.Euler(0, 90, 0));
-            gridLevel.walls.Add(new Vector2(-1, i), go.GetComponent<Wall>());
+            _gridLevel.walls.Add(new Vector2(-1, i), go.GetComponent<Wall>());
         }
     }
     #endregion
