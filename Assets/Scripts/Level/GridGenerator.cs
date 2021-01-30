@@ -8,6 +8,7 @@ public class GridGenerator : MonoBehaviour
     #region Variables
     public int gridDimensions = 3;
     [SerializeField] GameObject wallPrefab = default;
+    [SerializeField] GameObject seeThroughwallPrefab = default;
     [SerializeField] GameObject[] chunkPrefabs = default;
     [SerializeField] GameObject comptoirPrefab = default;
     [SerializeField] float chunkSize = 10;
@@ -82,7 +83,7 @@ public class GridGenerator : MonoBehaviour
         for (int i = 0; i < gridDimensions; i++)
         {
             Vector3 spawnPosition = new Vector3(i * chunkSize, 0, -chunkSize / 2);
-            GameObject go = Instantiate(wallPrefab, spawnPosition, Quaternion.identity);
+            GameObject go = Instantiate(seeThroughwallPrefab, spawnPosition, Quaternion.identity);
             gridLevel.walls.Add(new Vector2(i, -1), go.GetComponent<Wall>());
         }
 

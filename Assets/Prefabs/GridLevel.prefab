@@ -44,10 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef4cb15fa7acfe499a26fa35eeeb2ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoAddChunkInterval: 3
+  autoAddChunkInterval: 30
+  speedTestModifier: 1
   gridDimensions: 3
   chunkSize: 10
   chunkPrefabs: []
+  comptoirPrefab: {fileID: 0}
+  comptoirCoordinates: {x: 0, y: 0}
 --- !u!114 &3748341326222611052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,10 +63,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6578824690a6e3147912efb316fa8d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridDimensions: 5
+  gridDimensions: 4
   wallPrefab: {fileID: 3732924127487221211, guid: 4d3cb4a0fee796b488235e4a49644a05,
+    type: 3}
+  seeThroughwallPrefab: {fileID: 3732924127487221211, guid: bd1ecc102b6d76f4996ba5c02c5c5433,
     type: 3}
   chunkPrefabs:
   - {fileID: 5602484952419214300, guid: 9485057f42afdf3429f3c54724003019, type: 3}
   - {fileID: 5602484952419214300, guid: 88b131ec0fe233c4283f6fc2d82d64d6, type: 3}
+  comptoirPrefab: {fileID: 5576822841205726220, guid: 648c1d86f96cc944fae41ecd46119a64,
+    type: 3}
   chunkSize: 11
+  _useAutoGeneration: 1
