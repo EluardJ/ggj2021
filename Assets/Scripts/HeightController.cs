@@ -24,18 +24,18 @@ public class HeightController : MonoBehaviour, IController
     public void UpdateController()
     {
         if (useHeightSegment) {
-            if (Input.GetButtonDown("Fire1")) {
+            if (Input.GetButtonDown("Fire4")) {
                 heightSegmentId++;
             }
-            if (Input.GetButtonDown("Fire2")) {
+            if (Input.GetButtonDown("Fire5")) {
                 heightSegmentId--;
             }
             heightSegmentId = Mathf.Clamp(heightSegmentId, 0, heighSegment);
             height = Mathf.MoveTowards(height, ((heightSegmentId+0f)/heighSegment) * maxHeight, speed * Time.deltaTime);
         }
         else {
-            up = Input.GetButton("Fire1")?1f:0f;
-            down = Input.GetButton("Fire2")?1f:0f;
+            up = Input.GetButton("Fire4")?1f:0f;
+            down = Input.GetButton("Fire5")?1f:0f;
             height = height + (up - down) * speed * Time.deltaTime;
             height = Mathf.Clamp(height, 0, maxHeight);
         }
