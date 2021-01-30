@@ -6,6 +6,7 @@ public class RobotController : MonoBehaviour
 {
     MovementController movementController;
     DashController dashController;
+    DirectionController directionController;
     HeightController heightController;
     List<IController> orderedControllers = new List<IController>();
     // Start is called before the first frame update
@@ -14,10 +15,12 @@ public class RobotController : MonoBehaviour
         movementController = GetComponent<MovementController>();
         dashController = GetComponent<DashController>();
         heightController = GetComponent<HeightController>();
+        directionController = GetComponent<DirectionController>();
         
         orderedControllers.Add(dashController);
         orderedControllers.Add(heightController);
         orderedControllers.Add(movementController);
+        orderedControllers.Add(directionController);
 
     }
 
