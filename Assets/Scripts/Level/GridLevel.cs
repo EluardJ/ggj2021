@@ -5,48 +5,38 @@ using UnityEngine;
 public class GridLevel : MonoBehaviour
 {
     #region Variables
-    [SerializeField] GameObject chunkPrefab = default;
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     [HideInInspector] public int gridDimensions = 3;
     [HideInInspector] public float chunkSize = 10f;
+    [HideInInspector] public GameObject[] chunkPrefabs = default;
+
+    float elapedTimeSinceChange = 0;
     #endregion
 
     #region Unity Callbacks
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.S))
             AddChunkAtRandom();
+
+        elapedTimeSinceChange += Time.deltaTime;
+
+        if (elapedTimeSinceChange > 5)
+        {
+            AddChunkAtRandom();
+            elapedTimeSinceChange = 0;
+        }
     }
     #endregion
 
     #region Functions
-    private void CreateGrid(int gridDimensions, float chunksSize)
-    {
-        for (int i = 0; i < gridDimensions; i++)
-        {
-            for (int j = 0; j < gridDimensions; j++)
-            {
-                Vector3 position = new Vector3(chunksSize * i, 0, chunksSize * j);
-                GameObject go = Instantiate(chunkPrefab, position, Quaternion.identity);
-                RoomChunk chunk = go.GetComponent<RoomChunk>();
-
-                Vector2 gridCoords = new Vector2(i, j);
-                chunk.level = this;
-                chunk.gridCoords = gridCoords;
-
-                chunks.Add(gridCoords, chunk);
-            }
-        }
-    }
-
     private void AddChunkAtRandom()
     {
         bool horizontal = true;
         Vector2 spawnPosition = GetRandomSpawnPosition(ref horizontal);
 
-        GameObject go = Instantiate(chunkPrefab, new Vector3(spawnPosition.x * chunkSize, 0, spawnPosition.y * chunkSize), Quaternion.identity);
+        GameObject go = Instantiate(chunkPrefabs[Random.Range(0, chunkPrefabs.Length)], new Vector3(spawnPosition.x * chunkSize, 0, spawnPosition.y * chunkSize), Quaternion.identity);
         RoomChunk chunk = go.GetComponent<RoomChunk>();
         chunk.level = this;
         chunk.gridCoords = spawnPosition;

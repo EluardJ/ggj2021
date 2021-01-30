@@ -7,7 +7,7 @@ public class GridGenerator : MonoBehaviour
 {
     #region Variables
     public int gridDimensions = 3;
-    [SerializeField] GameObject chunkPrefab = default;
+    [SerializeField] GameObject[] chunkPrefabs = default;
     [SerializeField] float chunkSize = 10;
 
     GridLevel gridLevel = default;
@@ -30,13 +30,14 @@ public class GridGenerator : MonoBehaviour
     {
         gridLevel.gridDimensions = gridDimensions;
         gridLevel.chunkSize = chunkSize;
+        gridLevel.chunkPrefabs = chunkPrefabs;
 
         for (int i = 0; i < gridDimensions; i++)
         {
             for (int j = 0; j < gridDimensions; j++)
             {
                 Vector3 position = new Vector3(chunkSize * i, 0, chunkSize * j);
-                GameObject go = Instantiate(chunkPrefab, position, Quaternion.identity);
+                GameObject go = Instantiate(chunkPrefabs[Random.Range(0, chunkPrefabs.Length)], position, Quaternion.identity);
                 RoomChunk chunk = go.GetComponent<RoomChunk>();
 
                 Vector2 gridCoords = new Vector2(i, j);
