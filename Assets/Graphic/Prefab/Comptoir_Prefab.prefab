@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8878120299296272948}
   - component: {fileID: 5519918679198940561}
   - component: {fileID: 7745707037436332379}
+  - component: {fileID: 3464375062981143911}
   m_Layer: 0
   m_Name: Comptoir_Prefab
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3464375062981143911
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106123032236222606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6788383922943872000, guid: 8e609277d7594cf40b3ede779d10c553, type: 3}
