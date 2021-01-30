@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef4cb15fa7acfe499a26fa35eeeb2ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoAddChunkInterval: 15
+  autoAddChunkInterval: 600
   gridDimensions: 3
   chunkSize: 10
   chunkPrefabs: []
