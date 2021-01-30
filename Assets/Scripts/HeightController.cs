@@ -10,6 +10,7 @@ public class HeightController : MonoBehaviour, IController
     public float maxHeight = 3f;
     public Transform heightHandle;
     public Transform scaledHandle;
+    Vector3 heightHandleInitialLocalPosition;
     float up;
     float down;
     float height;
@@ -17,7 +18,7 @@ public class HeightController : MonoBehaviour, IController
     // Start is called before the first frame update
     void Start()
     {
-        
+        heightHandleInitialLocalPosition = heightHandle.localPosition;
     }
 
     // Update is called once per frame
@@ -39,11 +40,19 @@ public class HeightController : MonoBehaviour, IController
             height = height + (up - down) * speed * Time.deltaTime;
             height = Mathf.Clamp(height, 0, maxHeight);
         }
-        heightHandle.localPosition = new Vector3(0, height, 0);
-        scaledHandle.localPosition = heightHandle.localPosition * 0.5f;
-        scaledHandle.localScale = new Vector3(scaledHandle.localScale.x, heightHandle.localPosition.y, scaledHandle.localScale.z);
+        heightHandle.localPosition = heightHandleInitialLocalPosition + new Vector3(0, height / heightHandle.lossyScale.y, 0);
+        if (scaledHandle != null) {
+            scaledHandle.localPosition = heightHandleInitialLocalPosition + new Vector3(0, (height / heightHandle.lossyScale.y), 0);
+            scaledHandle.localScale = new Vector3(scaledHandle.localScale.x, heightHandle.localPosition.y, scaledHandle.localScale.z);
+        }
     }
     public void FixedUpdateController()
     {
+    }
+    public Transform GetHeightHandle () {
+        return heightHandle;
+    }
+    public Vector3 GetHeightHandleInitialLocalPosition () {
+        return heightHandleInitialLocalPosition;
     }
 }
