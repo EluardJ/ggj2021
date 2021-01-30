@@ -31,7 +31,7 @@ public class ComptoirChunk : RoomChunk
         }
     }
     public void RegisterListener (IComptoirTriggerListener listener) {
-        if (_listeners == null || listener == null) {
+        if (_listeners == null || listener == null || _listeners.Contains(listener)) {
             return;
         }
         _listeners.Add(listener);
