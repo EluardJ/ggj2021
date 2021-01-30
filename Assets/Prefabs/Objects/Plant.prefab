@@ -361,7 +361,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109631358886910971}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c7e396d1cb953ae46bc948a0ea267aa0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -1023,6 +1023,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4855824334501222928, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4855824334501222928, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_IsKinematic
