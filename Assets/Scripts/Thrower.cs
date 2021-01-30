@@ -15,6 +15,7 @@ public class Thrower : MonoBehaviour
 
     [HideInInspector] public bool isCharging = false;
     float charge = 0;
+    float previousInput = 0;
 
     private void Awake()
     {
@@ -23,19 +24,31 @@ public class Thrower : MonoBehaviour
 
     private void Update()
     {
+        bool inputOn = false;
+        bool input = false;
+        bool inputUp = false;
+        if (previousInput == 0 && Input.GetAxisRaw("RightTrigger") > 0)
+            inputOn = true;
+        else if (previousInput == 1 && Input.GetAxisRaw("RightTrigger") < 1)
+            inputUp = true;
+        else if (Input.GetAxisRaw("RightTrigger") > 0)
+            input = true;
+
+        previousInput = Input.GetAxisRaw("RightTrigger");
+
         if (grapple.isGrabbing)
         {
-            if (Input.GetButtonDown("Fire3") && !isCharging)
+            if (inputOn && !isCharging)
             {
                 isCharging = true;
             }
 
-            if (Input.GetButton("Fire3") && isCharging)
+            if (input && isCharging)
             {
                 Charge();
             }
 
-            if (Input.GetButtonUp("Fire3") && isCharging)
+            if (inputUp && isCharging)
             {
                 Throw();
             }
@@ -53,8 +66,6 @@ public class Thrower : MonoBehaviour
 
         if (charge > maxChargeTime)
             charge = maxChargeTime;
-
-        Debug.Log("charging : " + charge);
     }
 
     private void Throw()
@@ -62,21 +73,38 @@ public class Thrower : MonoBehaviour
         float chargeAmount = charge / maxChargeTime;
         chargeAmount = Mathf.Lerp(throwPower * minimumPowerRatio, throwPower, chargeAmount);
 
-        Vector3 playerTweakedPosition = grapple.player.position;
-        playerTweakedPosition.y = grapple.hookHolder.position.y + upwardModifier;
-        Vector3 direction = (grapple.player.position - grapple.hookTrf.position).normalized;
+        //Vector3 playerTweakedPosition = grapple.player.position;
+        //playerTweakedPosition.y = grapple.hookHolder.position.y + upwardModifier;
+        //Vector3 direction = (grapple.player.position - grapple.hookTrf.position).normalized;
 
-        Debug.Log(direction);
+        //Vector3 direction = grapple.player.forward + Vector3.up * upwardModifier;
+        Vector3 direction = GetLookDirection() + Vector3.up * upwardModifier;
 
         grapple.Throw(chargeAmount * direction);
 
         isCharging = false;
-
-        Debug.Log("throw : " + throwPower * chargeAmount);
     }
 
     public float GetNormalizedCharge()
     {
         return charge / maxChargeTime;
+    }
+
+    public Vector3 GetLookDirection()
+    {
+        float horizontal = Input.GetAxisRaw("LookHorizontal");
+        float vertical = Input.GetAxisRaw("LookVertical");
+
+        Vector3 output = new Vector3(horizontal, 0, vertical).normalized;
+
+        if (output.magnitude < 0.01f)
+        {
+            return grapple.player.forward;
+        }
+        else
+        {
+            return output;
+        }
+
     }
 }
