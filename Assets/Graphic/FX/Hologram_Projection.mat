@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hologram
-  m_Shader: {fileID: -6465566751694194690, guid: 5a9fcdf1f1f12bf4fabd3075af5c940c,
+  m_Name: Hologram_Projection
+  m_Shader: {fileID: -6465566751694194690, guid: 84959d0afd282ea4d8a87b081fd67828,
     type: 3}
-  m_ShaderKeywords: _BLENDMODE_ALPHA _DOUBLESIDED_ON _SURFACE_TYPE_TRANSPARENT
+  m_ShaderKeywords: _BLENDMODE_ALPHA _DOUBLESIDED_ON _ENABLE_FOG_ON_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -20,9 +20,10 @@ Material:
     RenderType: Transparent
   disabledShaderPasses:
   - DistortionVectors
-  - TransparentBackface
+  - MOTIONVECTORS
   - TransparentDepthPrepass
   - TransparentDepthPostpass
+  - TransparentBackface
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -115,8 +116,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_67084C05: 0.02
-    - Vector1_74CDAC12: 3.5
+    - Vector1_67084C05: -0.025
+    - Vector1_74CDAC12: 4.89
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -166,7 +167,7 @@ Material:
     - _EmissiveIntensity: 1
     - _EmissiveIntensityUnit: 0
     - _EnableBlendModePreserveSpecularLighting: 1
-    - _EnableFogOnTransparent: 0
+    - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
     - _HeightAmplitude: 0.02
@@ -239,9 +240,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - Color_27229AC0: {r: 0, g: 0.6745095, b: 1, a: 1}
-    - Color_A77DFFFA: {r: 24543.875, g: 6296.596, b: 0, a: 0}
-    - Vector2_8AD62E1B: {r: 1, g: 0.75, b: 0.1, a: 0}
+    - Color_27229AC0: {r: 0, g: 0.7416183, b: 0.99056596, a: 1}
+    - Color_A77DFFFA: {r: 6135.9688, g: 3308.9255, b: 0, a: 0}
+    - Vector2_8AD62E1B: {r: 1, g: 0.5, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -258,7 +259,7 @@ Material:
     - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
     - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
---- !u!114 &735064531797835934
+--- !u!114 &9160853077430849744
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
