@@ -354,6 +354,33 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.014361873, y: 0.24570684, z: -0.0013048649}
     m_Extent: {x: 0.34049755, y: 0.24570684, z: 0.3467682}
   m_DirtyAABB: 0
+--- !u!64 &8218220988578952316
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109631358886910971}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8192796204037454594, guid: f2c16c9f4932b5245af6813444c7cca1, type: 3}
+--- !u!114 &-1359230108438422331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109631358886910971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca07adb69c693334097e26e9e1aabd9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
 --- !u!1 &2344419030932774902
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,20 +899,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.055532526
   m_Center: {x: 0, y: 0, z: 0}
---- !u!64 &8218220988578952316
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109631358886910971}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8192796204037454594, guid: f2c16c9f4932b5245af6813444c7cca1, type: 3}
 --- !u!1 &8919539375838168479
 GameObject:
   m_ObjectHideFlags: 0

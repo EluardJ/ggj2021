@@ -7602,7 +7602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5349045658233011960}
   m_LocalRotation: {x: 0.49999997, y: -0.50000006, z: 0.4999985, w: 0.50000155}
-  m_LocalPosition: {x: -0.47099972, y: -0.4, z: -0.10099983}
+  m_LocalPosition: {x: -0.47099972, y: -0.351, z: -0.10099983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3653931357417289823}
@@ -8205,7 +8205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6125398800166629329}
   m_LocalRotation: {x: 0.49999997, y: -0.50000006, z: 0.4999985, w: 0.50000155}
-  m_LocalPosition: {x: 0.47200012, y: -0.444, z: -0.10099983}
+  m_LocalPosition: {x: 0.47200012, y: -0.3950001, z: -0.10099983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3653931357417289823}
@@ -9595,6 +9595,8 @@ MonoBehaviour:
   speed: 250
   cooldown: 1.59
   decay: 100
+  _dashEffects:
+  - {fileID: 51855764981616253}
 --- !u!114 &7477462267796333183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15346,6 +15348,12 @@ PrefabInstance:
 --- !u!4 &68029588368825297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7135145428913604654, guid: f88fd4375b2bd394dbb776bd5c861e71,
+    type: 3}
+  m_PrefabInstance: {fileID: 7202540558266749951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &51855764981616253 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7155281861065596290, guid: f88fd4375b2bd394dbb776bd5c861e71,
     type: 3}
   m_PrefabInstance: {fileID: 7202540558266749951}
   m_PrefabAsset: {fileID: 0}
