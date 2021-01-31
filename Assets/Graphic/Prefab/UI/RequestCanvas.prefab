@@ -133,6 +133,7 @@ MonoBehaviour:
   - {fileID: 1109631358886910971, guid: d9e500bdbaff3ac459b0df238a7a3cca, type: 3}
   _requestedItems: []
   _requestUI_template: {fileID: 8059791910431877608}
+  _itemPerChunk: 1
 --- !u!223 &8059791909575047970
 Canvas:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _3DObjectHandle: {fileID: 8059791910546489929}
-  _label: {fileID: 0}
+  _label: {fileID: 9189075374544410986}
 --- !u!222 &8059791910431877604
 CanvasRenderer:
   m_ObjectHideFlags: 0
