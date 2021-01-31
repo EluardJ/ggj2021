@@ -8,12 +8,15 @@ public class GameManager : MonoBehaviour
 
     public GridGenerator _gridGenerator;
     public RequestManager _requestManager;
+    public ScoreDisplay _scoreDisplay;
 
     bool gameIsOn = false;
     [HideInInspector] public float timer = 0;
 
     public delegate void Function();
     public Function GameEnd;
+
+    int _score;
 
     private void Update()
     {
@@ -41,12 +44,24 @@ public class GameManager : MonoBehaviour
         }
         if (_requestManager != null)
         {
+            _requestManager._gameManager = this;
             _requestManager._gridLevel = _gridGenerator.GetComponent<GridLevel>();
             _requestManager.InitializeRequestItems();
             _requestManager.SetRequestCount(3);
         }
+        if (_scoreDisplay != null) {
+            _score = 0;
+            _scoreDisplay.SetScore(_score);
+        }
 
         timer = gameTime;
+    }
+
+    public void OnSuccess () {
+        _score++;
+        if (_scoreDisplay != null) {
+            _scoreDisplay.SetScore(_score);
+        }
     }
 
     public void EndGame()

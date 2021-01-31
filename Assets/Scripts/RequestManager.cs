@@ -13,6 +13,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
     private List<Item> _currentlyRequestedItems = new List<Item>();
     private Dictionary<Item, RequestUI> _requestUILookup = new Dictionary<Item, RequestUI>();
     private Dictionary<Transform, Item> _transformToItemLookup = new Dictionary<Transform, Item>();
+    public GameManager _gameManager;
     // private Dictionary<Item, Chunk> _transformToItemLookup = new Dictionary<Transform, Item>();
     public int _itemPerChunk = 1;
 
@@ -150,6 +151,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         foreach (Item currentlyRequestedItem in _currentlyRequestedItems) {
             if (item == currentlyRequestedItem) {
                 Debug.Log("Success !");
+                _gameManager.OnSuccess();
                 isSuccess = true;
             }
         }
