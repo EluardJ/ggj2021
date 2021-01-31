@@ -19,6 +19,7 @@ public class MovementController : MonoBehaviour, IController
     public TrailRenderer[] _driftTrails;
     private TrailRenderer[] _currentDriftEffects;
     public Animator _animator;
+    float swing;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,7 +74,12 @@ public class MovementController : MonoBehaviour, IController
         }
         if (_animator != null) {
             _animator.SetFloat("Speed", body.velocity.magnitude / runSpeed);
-            _animator.SetFloat("Swing", (Vector2.SignedAngle(new Vector2(body.velocity.normalized.x, body.velocity.normalized.z), new Vector2(transform.forward.x, transform.forward.z))/90f));
+            float swingTarget = (Vector2.SignedAngle(new Vector2(body.velocity.normalized.x, body.velocity.normalized.z), new Vector2(transform.forward.x, transform.forward.z))/90f);
+            if (body.velocity.magnitude <= 0.1f) {
+                swingTarget = 0f;
+            }
+            swing = Mathf.MoveTowards(swing, swingTarget, Time.deltaTime);
+            _animator.SetFloat("Swing", swing);
         }
     }
     public void FixedUpdateController()

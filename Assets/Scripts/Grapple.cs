@@ -151,9 +151,9 @@ public class Grapple : MonoBehaviour
         state = State.Docked;
     }
 
-    public void Throw(Vector3 force)
+    public void Throw(Vector3 force, float power)
     {
-        hook.Throw(force);
+        hook.Throw(force, power);
 
         state = State.Throwing;
 
