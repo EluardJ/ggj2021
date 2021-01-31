@@ -52,13 +52,14 @@ public class GameManager : MonoBehaviour
         if (_scoreDisplay != null) {
             _score = 0;
             _scoreDisplay.SetScore(_score);
+            _scoreDisplay.gameObject.SetActive(true);
         }
 
         timer = gameTime;
     }
 
     public void OnSuccess () {
-        _score += 1000;
+        _score = _score + 1000;
         if (_scoreDisplay != null) {
             _scoreDisplay.SetScore(_score);
         }

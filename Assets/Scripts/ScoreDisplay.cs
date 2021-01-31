@@ -18,6 +18,6 @@ public class ScoreDisplay : MonoBehaviour
         
     }
     public void SetScore (int score) {
-        _scoreTextDisplay.text=  score.ToString();
+        _scoreTextDisplay.text=  score.ToString("000000");
     }
 }
