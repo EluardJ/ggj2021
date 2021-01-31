@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6706611540730491268}
   - component: {fileID: -4752166097409191659}
   - component: {fileID: 1047369629036362889}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MineCraftBlock
   m_TagString: Movable
   m_Icon: {fileID: 0}
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b7b0fac0b394147bba5b461124168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grapple: {fileID: 0}
 --- !u!54 &-6706611540730491268
 Rigidbody:
   m_ObjectHideFlags: 0
