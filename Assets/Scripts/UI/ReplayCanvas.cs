@@ -9,6 +9,14 @@ public class ReplayCanvas : MonoBehaviour
 
     [SerializeField] GameManager gameManager = default;
 
+    bool isOn = false;
+
+    private void Update()
+    {
+        if (isOn && Input.GetButtonDown("Fire1"))
+            Replay();
+    }
+
     private void OnEnable()
     {
         gameManager.GameEnd += OnGameEnd;
@@ -27,5 +35,7 @@ public class ReplayCanvas : MonoBehaviour
     private void OnGameEnd()
     {
         panel.SetActive(true);
+
+        isOn = true;
     }
 }

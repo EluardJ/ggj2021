@@ -20,8 +20,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-            StartGame();
+        if (Input.GetButtonDown("Select"))
+            EndGame();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
 
         if (gameIsOn)
         {
@@ -49,7 +52,8 @@ public class GameManager : MonoBehaviour
             _requestManager.InitializeRequestItems();
             _requestManager.SetRequestCount(3);
         }
-        if (_scoreDisplay != null) {
+        if (_scoreDisplay != null)
+        {
             _score = 0;
             _scoreDisplay.SetScore(_score);
             _scoreDisplay.gameObject.SetActive(true);
@@ -58,9 +62,11 @@ public class GameManager : MonoBehaviour
         timer = gameTime;
     }
 
-    public void OnSuccess () {
+    public void OnSuccess()
+    {
         _score = _score + 1000;
-        if (_scoreDisplay != null) {
+        if (_scoreDisplay != null)
+        {
             _scoreDisplay.SetScore(_score);
         }
     }
