@@ -74,6 +74,9 @@ public class MovementController : MonoBehaviour, IController
     }
     public void FixedUpdateController()
     {  
+        if (body == null) {
+            return;
+        }
         Vector3 dashVelocity = Vector3.zero;
         if (dashController != null) 
         {
