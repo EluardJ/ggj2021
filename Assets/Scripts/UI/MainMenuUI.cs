@@ -22,6 +22,8 @@ public class MainMenuUI : MonoBehaviour
 
         mainMenuPanel.SetActive(false);
 
+        yield return new WaitForSeconds(0.5f);
+
         yield return new WaitUntil(() => Input.GetButtonDown("Fire1"));
 
         tutoPanel.SetActive(false);
