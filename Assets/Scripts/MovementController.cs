@@ -18,6 +18,7 @@ public class MovementController : MonoBehaviour, IController
     public ParticleSystem[] _driftEffects;
     public TrailRenderer[] _driftTrails;
     private TrailRenderer[] _currentDriftEffects;
+    public Animator _animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,7 +70,9 @@ public class MovementController : MonoBehaviour, IController
                 _currentDriftEffects[i].transform.localScale = _driftTrails[i].transform.localScale;
                 _currentDriftEffects[i].gameObject.SetActive(true);
             }
-
+        }
+        if (_animator != null) {
+            _animator.SetFloat("Speed", body.velocity.magnitude / runSpeed);
         }
     }
     public void FixedUpdateController()
