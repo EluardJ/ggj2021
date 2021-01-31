@@ -160,7 +160,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         foreach (Item currentlyRequestedItem in _currentlyRequestedItems) {
             if (item == currentlyRequestedItem) {
                 Debug.Log("=========>SUCCESS<=========  (" + Time.frameCount + ")");
-                _gameManager.OnSuccess();
+                // _gameManager.OnSuccess();
                 isSuccess = true;
             }
         }
