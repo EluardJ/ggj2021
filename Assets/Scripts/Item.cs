@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     RequestManager _requestManager;
 
     public float _uiSize = 1f;
+    public Vector3 _uiRotation;
 
     public void SetChunkLabel(string chunkLabel)
     {
@@ -30,7 +31,6 @@ public class Item : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Item destroyed");
         if (_requestManager != null)
         {
             _requestManager.OnItemDestroyed(this);
@@ -46,7 +46,6 @@ public class Item : MonoBehaviour
         }
         if (hook != null)
         {
-            Debug.Log("=========>HOOK<=========  (" + Time.frameCount + ")");
         }
         //ComptoirChunk comptoirChunk = other.GetComponent<ComptoirChunk>();
         //if (comptoirChunk != null) {
