@@ -15768,6 +15768,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hook
       objectReference: {fileID: 0}
+    - target: {fileID: 1654126487819274321, guid: 2d967e7093870c74f9351c2b7f802aba,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1654126487819274321, guid: 2d967e7093870c74f9351c2b7f802aba,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d967e7093870c74f9351c2b7f802aba, type: 3}
 --- !u!4 &1654126487192289323 stripped
