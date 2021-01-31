@@ -8,8 +8,9 @@ public class GridLevel : MonoBehaviour
     [SerializeField] float autoAddChunkInterval = 3f;
     [Range(0.1f, 2.5f)]
     public float chunkMoveTime = 1.5f;
+    public Texture2D[] groundLetterTextures = default;
     [HideInInspector] public float speedTestModifier = 3f;
-    
+
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
     [HideInInspector] public int gridDimensions = 3;
@@ -31,7 +32,8 @@ public class GridLevel : MonoBehaviour
         {
             elapedTimeSinceChange = 0;
             AddChunkAtRandom();
-            if (_requestManager != null) {
+            if (_requestManager != null)
+            {
                 _requestManager.OnChunckChanged();
             }
         }
