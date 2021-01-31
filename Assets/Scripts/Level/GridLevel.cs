@@ -10,6 +10,7 @@ public class GridLevel : MonoBehaviour
     public float chunkMoveTime = 1.5f;
     public Texture2D[] groundLetterTextures = default;
     [HideInInspector] public float speedTestModifier = 1f;
+    [SerializeField] Transform player = null;
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
@@ -48,6 +49,11 @@ public class GridLevel : MonoBehaviour
     {
         if (minimap != null)
             minimap.GenerateMinimap();
+
+        Vector3 playerPos = new Vector3(comptoirCoordinates.x * chunkSize, 0, comptoirCoordinates.y * chunkSize);
+        playerPos += Vector3.back * 4;
+        player.transform.position = playerPos;
+        player.GetComponent<RobotInitializer>().Initialize();
     }
 
     private IEnumerator UpdateMinimap()

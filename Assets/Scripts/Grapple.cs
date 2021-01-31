@@ -38,6 +38,8 @@ public class Grapple : MonoBehaviour
         cursor = GetComponent<ObiRopeCursor>();
         rope = cursor.GetComponent<ObiRope>();
         hook.grapple = this;
+
+        StartCoroutine(RetrieveGrappleIE());
     }
 
     void Update()
