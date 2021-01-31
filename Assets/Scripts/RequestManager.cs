@@ -14,9 +14,11 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
     private Dictionary<Item, RequestUI> _requestUILookup = new Dictionary<Item, RequestUI>();
     private Dictionary<Transform, Item> _transformToItemLookup = new Dictionary<Transform, Item>();
     // private Dictionary<Item, Chunk> _transformToItemLookup = new Dictionary<Transform, Item>();
+    public int _itemPerChunk = 1;
 
     private int nextRequestedItemId = 0;
     private int _count;
+    int prefabId = 0;
     private string[] lettres = new string[] {
         "A",
         "B",
@@ -76,11 +78,11 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                         handles[randomIndex] = temp;
                     }
                     // spawn and set items.
-                    int chunkItemCount = Mathf.Min(handles.Length, 2);
+                    int chunkItemCount = Mathf.Min(handles.Length, _itemPerChunk);
                     Item[] newChunkItems = new Item[chunkItemCount];
                     for (int i = 0; i < chunkItemCount; i++) {
                         Transform t = handles[i];
-                        GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[Random.Range(0, _itemPrefabs.Length)]);
+                        GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[(prefabId++)%_itemPrefabs.Length]);
                         itemGameObject.transform.position = t.position;
                         itemGameObject.transform.rotation = t.rotation;
                         itemGameObject.transform.parent = t.parent;
