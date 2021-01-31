@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b7b0fac0b394147bba5b461124168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grapple: {fileID: 0}
 --- !u!114 &7181096055280150919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +140,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
+  _uiSize: 1
+  _uiRotation: {x: 0, y: 120, z: 0}

@@ -28,6 +28,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   _uiSize: 2
+  _uiRotation: {x: -45, y: 0, z: 0}
 --- !u!1001 &8542033668307238502
 PrefabInstance:
   m_ObjectHideFlags: 0
