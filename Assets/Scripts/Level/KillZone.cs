@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager = null;
 
+    private void OnTriggerEnter(Collider other)
+    {
+
+    }
 }

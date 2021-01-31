@@ -61,6 +61,11 @@ public class Movable : MonoBehaviour
 
     private void OnPulledIn()
     {
+        Item item = GetComponent<Item>();
+
+        if (item != null)
+            comptoir.OnItemEnter(item);
+
         Destroy(gameObject);
     }
     #endregion

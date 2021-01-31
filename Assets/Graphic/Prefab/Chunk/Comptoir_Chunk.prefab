@@ -932,6 +932,7 @@ MonoBehaviour:
   comptoir: 0
   letterID: 0
   _comptoirTrigger: {fileID: -4591529762369281344}
+  getObjectParticle: {fileID: 1257332887307174579}
 --- !u!65 &-4591529762369281344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2679,6 +2680,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6719798883178620069, guid: 0b2726a99319cfa46b92c467b3cc18bc,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7720544384399341549, guid: 0b2726a99319cfa46b92c467b3cc18bc,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7765175131843494133, guid: 0b2726a99319cfa46b92c467b3cc18bc,
         type: 3}
       propertyPath: looping
@@ -2686,6 +2697,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b2726a99319cfa46b92c467b3cc18bc, type: 3}
+--- !u!198 &1257332887307174579 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7765175131843494133, guid: 0b2726a99319cfa46b92c467b3cc18bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 8840988545006355014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3126957725689307828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5896530529653170418, guid: 0b2726a99319cfa46b92c467b3cc18bc,
