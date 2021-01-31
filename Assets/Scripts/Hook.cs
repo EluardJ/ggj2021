@@ -12,9 +12,9 @@ public class Hook : MonoBehaviour
     [SerializeField] Rigidbody hookRb = default;
 
     [HideInInspector] public Grapple grapple = default;
+    [HideInInspector] public GameObject grabbedObject = default;
 
     float grabbedMass = 0;
-    GameObject grabbedObject = default;
     bool isActive = false;
     #endregion
 
