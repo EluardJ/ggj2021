@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     RequestManager _requestManager;
 
     public float _uiSize = 1f;
+    public Vector3 _uiRotation;
 
     public void SetChunkLabel(string chunkLabel)
     {
