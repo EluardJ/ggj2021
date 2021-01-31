@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour, IController
         dot = Vector3.Dot(transform.forward, inputDirection);
 
         bool wasDrifting = isDrifting;
-        isDrifting = Vector3.Dot(body.velocity, inputDirection) < _driftThreshold;
+        isDrifting = Vector3.Dot(body.velocity.normalized, inputDirection) < _driftThreshold;
         if(wasDrifting && !isDrifting) {
             //exit drift
             foreach (ParticleSystem effect in _driftEffects) {
