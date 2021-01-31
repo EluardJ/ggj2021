@@ -17,7 +17,7 @@ public class RoomChunk : MonoBehaviour
     [HideInInspector] public int letterID = 0;
     #endregion
 
-    public void Start()
+    public void Awake()
     {
         foreach (Transform t in _itemHandles)
         {
