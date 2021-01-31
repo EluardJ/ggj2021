@@ -8,6 +8,8 @@ public class Item : MonoBehaviour
     string _chunkLabel;
     RequestManager _requestManager;
 
+    public float _uiSize = 1f;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -26,6 +26,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
+  _uiSize: 1.25
 --- !u!1001 &8542033668307238502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76,17 +77,17 @@ PrefabInstance:
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
