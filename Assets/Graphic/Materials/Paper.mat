@@ -275,7 +275,7 @@ Material:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0.30188668, g: 0.26437777, b: 0.23495898, a: 1}
-    - _EmissiveColorLDR: {r: 0.30188492, g: 0.264376, b: 0.23495722, a: 1}
+    - _EmissiveColorLDR: {r: 0.30188447, g: 0.26437557, b: 0.23495677, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
