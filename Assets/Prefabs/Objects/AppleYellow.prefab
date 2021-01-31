@@ -52,7 +52,7 @@ PrefabInstance:
     - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_Name
-      value: Apple
+      value: AppleYellow
       objectReference: {fileID: 0}
     - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
@@ -214,7 +214,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 72cac1b4c1b8654469729af8405b9637, type: 2}
+      objectReference: {fileID: 2100000, guid: 262cc4845fd708e4aa3bf2fea83ed1a8, type: 2}
     - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
