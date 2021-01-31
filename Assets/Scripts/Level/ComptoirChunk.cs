@@ -6,25 +6,20 @@ public class ComptoirChunk : RoomChunk
 {
     public BoxCollider _comptoirTrigger;
     private List<IComptoirTriggerListener> _listeners = new List<IComptoirTriggerListener>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public bool OnItemEnter(Item item)
     {
-        
-    }
-    public bool OnItemEnter (Item item) {
         bool hasBeenDropped = false;
-        if (_listeners == null) {
+        if (_listeners == null)
+        {
             return hasBeenDropped;
         }
-        if (item != null) {
-            foreach (IComptoirTriggerListener listener in _listeners) {
-                if (listener == null) {
+        if (item != null)
+        {
+            foreach (IComptoirTriggerListener listener in _listeners)
+            {
+                if (listener == null)
+                {
                     continue;
                 }
                 hasBeenDropped = hasBeenDropped || listener.OnItemDropped(item);
@@ -32,8 +27,11 @@ public class ComptoirChunk : RoomChunk
         }
         return hasBeenDropped;
     }
-    public void RegisterListener (IComptoirTriggerListener listener) {
-        if (_listeners == null || listener == null || _listeners.Contains(listener)) {
+
+    public void RegisterListener(IComptoirTriggerListener listener)
+    {
+        if (_listeners == null || listener == null || _listeners.Contains(listener))
+        {
             return;
         }
         _listeners.Add(listener);

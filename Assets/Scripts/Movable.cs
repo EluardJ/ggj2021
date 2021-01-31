@@ -9,6 +9,8 @@ public class Movable : MonoBehaviour
     new Collider collider = default;
     ComptoirChunk comptoir = null;
 
+    [HideInInspector] public Grapple grapple = default;
+
     private void Awake()
     {
         collider = GetComponent<Collider>();
@@ -43,6 +45,11 @@ public class Movable : MonoBehaviour
 
     public void PullInComptoir(Transform comptTrf, ComptoirChunk comptoirChunk)
     {
+        Debug.Log(grapple);
+
+        if (grapple != null)
+            grapple.TryDropThis(gameObject);
+
         if (collider != null)
             collider.enabled = false;
 
@@ -54,7 +61,7 @@ public class Movable : MonoBehaviour
 
     private void OnPulledIn()
     {
-
+        Destroy(gameObject);
     }
     #endregion
 }

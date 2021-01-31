@@ -76,7 +76,7 @@ public class Hook : MonoBehaviour
 
         grabParticles.Play();
 
-        grapple.Grab();
+        grapple.Grab(objectToGrab.GetComponent<Movable>()); ;
     }
 
     public void Throw(Vector3 force)
@@ -95,6 +95,8 @@ public class Hook : MonoBehaviour
         throwParticles.Play();
 
         isHoldingSomething = false;
+
+        grabbedObject = null;
     }
     public void DropItem()
     {
