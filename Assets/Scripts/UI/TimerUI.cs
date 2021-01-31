@@ -11,6 +11,6 @@ public class TimerUI : MonoBehaviour
 
     private void Update()
     {
-        timerText.SetText("{0}", gameManager.timer);
+        timerText.SetText("{0:2}", gameManager.timer);
     }
 }

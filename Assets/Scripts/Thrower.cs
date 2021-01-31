@@ -17,6 +17,8 @@ public class Thrower : MonoBehaviour
     float charge = 0;
     float previousInput = 0;
 
+    Vector3 previousLookDirection = Vector3.zero;
+
     private void Awake()
     {
         grapple = GetComponent<Grapple>();
@@ -73,11 +75,6 @@ public class Thrower : MonoBehaviour
         float chargeAmount = charge / maxChargeTime;
         chargeAmount = Mathf.Lerp(throwPower * minimumPowerRatio, throwPower, chargeAmount);
 
-        //Vector3 playerTweakedPosition = grapple.player.position;
-        //playerTweakedPosition.y = grapple.hookHolder.position.y + upwardModifier;
-        //Vector3 direction = (grapple.player.position - grapple.hookTrf.position).normalized;
-
-        //Vector3 direction = grapple.player.forward + Vector3.up * upwardModifier;
         Vector3 direction = GetLookDirection() + Vector3.up * upwardModifier;
 
         grapple.Throw(chargeAmount * direction);
@@ -99,10 +96,12 @@ public class Thrower : MonoBehaviour
 
         if (output.magnitude < 0.01f)
         {
-            return grapple.player.forward;
+            return previousLookDirection;
+            //return grapple.player.forward;
         }
         else
         {
+            previousLookDirection = output;
             return output;
         }
 

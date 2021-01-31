@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Minimap : MonoBehaviour
 {
     public GridLevel gridLevel = default;
 
+    [SerializeField] Color normalBackground = default;
+    [SerializeField] Color comptoirBackground = default;
+
     [SerializeField] TextMeshProUGUI[] lettersTexts = default;
+    [SerializeField] Image[] backgroundsImages = default;
 
     public Dictionary<Vector2, TextMeshProUGUI> letters = new Dictionary<Vector2, TextMeshProUGUI>();
+    public Dictionary<Vector2, Image> backgrounds = new Dictionary<Vector2, Image>();
 
     private string[] alphabet = new string[] {
         "A",
@@ -51,6 +57,7 @@ public class Minimap : MonoBehaviour
                 Vector2 gridCoords = new Vector2(i, j);
 
                 letters.Add(gridCoords, lettersTexts[cnt]);
+                backgrounds.Add(gridCoords, backgroundsImages[cnt]);
 
                 cnt++;
             }
@@ -64,6 +71,12 @@ public class Minimap : MonoBehaviour
         foreach (KeyValuePair<Vector2, RoomChunk> chunk in gridLevel.chunks)
         {
             letters[chunk.Key].SetText(alphabet[chunk.Value.letterID]);
+
+            if (gridLevel.comptoirCoordinates == chunk.Key)
+                backgrounds[chunk.Key].color = comptoirBackground;
+            else
+                backgrounds[chunk.Key].color = normalBackground ;
+
         }
     }
 }
