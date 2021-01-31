@@ -31,7 +31,8 @@ public class GridGenerator : MonoBehaviour
         }
     }
     #endregion
-    public void SetGridLevel (GridLevel gridLevel) {
+    public void SetGridLevel(GridLevel gridLevel)
+    {
         _gridLevel = gridLevel;
     }
     public void Generate()
@@ -50,6 +51,8 @@ public class GridGenerator : MonoBehaviour
 
         int comptoirI = Random.Range(0, gridDimensions);
         int comptoirJ = Random.Range(0, gridDimensions);
+
+        int letterID = 0;
 
         for (int i = 0; i < gridDimensions; i++)
         {
@@ -74,6 +77,7 @@ public class GridGenerator : MonoBehaviour
                 Vector2 gridCoords = new Vector2(i, j);
                 chunk.level = _gridLevel;
                 chunk.gridCoords = gridCoords;
+                chunk.SetLetterID(letterID++);
 
                 _gridLevel.chunks.Add(gridCoords, chunk);
             }

@@ -13,6 +13,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.4101444
   m_Center: {x: 0.00068695843, y: -0.021568775, z: -0.0005165413}
+--- !u!114 &-2858332807715873986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109631358886910971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca07adb69c693334097e26e9e1aabd9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
 --- !u!1001 &8542033668307238502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20,10 +33,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4855824334501222928, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_Drag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855824334501222928, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855824334501222928, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_Name
       value: Apple
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Movable
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}

@@ -11,11 +11,16 @@ public class RoomChunk : MonoBehaviour
     public Transform[] _itemHandles;
     private Item[] _items;
 
+    [SerializeField] Renderer groundRenderer = default;
+
     [HideInInspector] public bool comptoir = false;
+    [HideInInspector] public int letterID = 0;
     #endregion
 
-    public void Start () {
-        foreach (Transform t in _itemHandles) {
+    public void Awake()
+    {
+        foreach (Transform t in _itemHandles)
+        {
             t.gameObject.SetActive(false);
         }
     }
@@ -31,17 +36,21 @@ public class RoomChunk : MonoBehaviour
         transform.DOMove(new Vector3(newCoords.x, 0, newCoords.y) * chunkSize, level.chunkMoveTime * (1 / level.speedTestModifier)).OnComplete(OnMoveComplete);
     }
 
-    public void SetItems (Item[] items) {
+    public void SetItems(Item[] items)
+    {
         _items = items;
     }
-    public bool HasItems () {
-        if (_items == null) {
+    public bool HasItems()
+    {
+        if (_items == null)
+        {
             return false;
         }
-        if (_items.Length == 0) {
+        if (_items.Length == 0)
+        {
             return false;
         }
-        return true;        
+        return true;
     }
     public Item[] GetItems()
     {
@@ -83,5 +92,11 @@ public class RoomChunk : MonoBehaviour
             }
         }
         _items = items.ToArray();
+    }
+
+    public void SetLetterID(int newID)
+    {
+        letterID = newID;
+        groundRenderer.material.SetTexture("_BaseColorMap", level.groundLetterTextures[newID]);
     }
 }

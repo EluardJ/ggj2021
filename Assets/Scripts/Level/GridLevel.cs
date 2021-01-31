@@ -8,8 +8,9 @@ public class GridLevel : MonoBehaviour
     [SerializeField] float autoAddChunkInterval = 3f;
     [Range(0.1f, 2.5f)]
     public float chunkMoveTime = 1.5f;
-    [HideInInspector] public float speedTestModifier = 3f;
-    
+    public Texture2D[] groundLetterTextures = default;
+    /*[HideInInspector]*/ public float speedTestModifier = 1f;
+
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
     [HideInInspector] public int gridDimensions = 3;
@@ -31,7 +32,8 @@ public class GridLevel : MonoBehaviour
         {
             elapedTimeSinceChange = 0;
             AddChunkAtRandom();
-            if (_requestManager != null) {
+            if (_requestManager != null)
+            {
                 _requestManager.OnChunckChanged();
             }
         }
@@ -44,6 +46,7 @@ public class GridLevel : MonoBehaviour
         bool horizontal = true;
         bool positive = false;
         bool replaceComptoir = false;
+        int letterID = 0;
         Vector2 spawnPosition = GetRandomSpawnPosition(ref horizontal);
 
         if (horizontal)
@@ -54,11 +57,15 @@ public class GridLevel : MonoBehaviour
             {
                 if (comptoirCoordinates == new Vector2(0, spawnPosition.y))
                     replaceComptoir = true;
+
+                letterID = chunks[new Vector2(0, spawnPosition.y)].letterID;
             }
             else
             {
                 if (comptoirCoordinates == new Vector2(gridDimensions - 1, spawnPosition.y))
                     replaceComptoir = true;
+
+                letterID = chunks[new Vector2(gridDimensions - 1, spawnPosition.y)].letterID;
             }
         }
         else
@@ -69,11 +76,15 @@ public class GridLevel : MonoBehaviour
             {
                 if (comptoirCoordinates == new Vector2(spawnPosition.x, 0))
                     replaceComptoir = true;
+
+                letterID = chunks[new Vector2(spawnPosition.x, 0)].letterID;
             }
             else
             {
                 if (comptoirCoordinates == new Vector2(spawnPosition.x, gridDimensions - 1))
                     replaceComptoir = true;
+
+                letterID = chunks[new Vector2(spawnPosition.x, 0)].letterID;
             }
         }
 
@@ -82,6 +93,8 @@ public class GridLevel : MonoBehaviour
             chunk = ReplaceComptoir(spawnPosition);
         else
             chunk = GetNewChunk(spawnPosition);
+
+        chunk.SetLetterID(letterID);
 
         MoveRow(chunk, horizontal, positive);
     }

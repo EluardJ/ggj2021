@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ThrowIndicator : MonoBehaviour
 {
-    [SerializeField] Transform hookTrf = default;
     [SerializeField] Transform player = default;
+    [SerializeField] Hook hook = default;
     [SerializeField] Thrower thrower = default;
     [SerializeField] Grapple grapple = default;
     [SerializeField] Transform arrow = default;
@@ -20,13 +20,12 @@ public class ThrowIndicator : MonoBehaviour
         }
         else
         {
-            Vector3 newPos = hookTrf.position;
+            Vector3 newPos = hook.grabbedObject.transform.position;
             newPos.y = 0.2f;
             transform.position = newPos;
 
-            newPos = player.position;
-            newPos.y = 0.2f;
-            Vector3 direction = (newPos - transform.position).normalized;
+            Vector3 direction = thrower.GetLookDirection();
+
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
 
             Vector3 size = new Vector3(1, 1, thrower.GetNormalizedCharge());
