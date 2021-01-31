@@ -180,6 +180,9 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         }
         Item requestedItem = _requestedItems[nextRequestedItemId];
         nextRequestedItemId++;
+        if (requestedItem == null || requestedItem.gameObject == null) {
+            PushNextRequest();
+        }
         RequestUI requestUI = GameObject.Instantiate(_requestUI_template).GetComponent<RequestUI>();
         requestUI.transform.SetParent(_requestUI_template.transform.parent, false);
         requestUI.gameObject.SetActive(true);
