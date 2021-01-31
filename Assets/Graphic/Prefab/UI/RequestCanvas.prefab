@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _3DObjectHandle: {fileID: 8059791910546489929}
-  _label: {fileID: 0}
+  _label: {fileID: 9189075374544410986}
 --- !u!222 &8059791910431877604
 CanvasRenderer:
   m_ObjectHideFlags: 0
