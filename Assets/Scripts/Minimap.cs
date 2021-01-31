@@ -44,8 +44,6 @@ public class Minimap : MonoBehaviour
     {
         int cnt = 0;
 
-        Debug.Log(gridLevel.gridDimensions);
-
         for (int j = gridLevel.gridDimensions - 1; j >= 0; j--)
         {
             for (int i = 0; i < gridLevel.gridDimensions; i++)
@@ -65,7 +63,6 @@ public class Minimap : MonoBehaviour
     {
         foreach (KeyValuePair<Vector2, RoomChunk> chunk in gridLevel.chunks)
         {
-            Debug.Log(chunk.Key);
             letters[chunk.Key].SetText(alphabet[chunk.Value.letterID]);
         }
     }
