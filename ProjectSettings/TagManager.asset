@@ -40,6 +40,12 @@ TagManager:
   - 
   - Particle_Collision
   m_SortingLayers:
+  - name: Front
+    uniqueID: 1659536091
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Behind
+    uniqueID: 2909019681
     locked: 0

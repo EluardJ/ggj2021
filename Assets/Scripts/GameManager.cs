@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         if (_scoreDisplay != null) {
             _score = 0;
             _scoreDisplay.SetScore(_score);
+            _scoreDisplay.gameObject.SetActive(true);
         }
 
         timer = gameTime;
