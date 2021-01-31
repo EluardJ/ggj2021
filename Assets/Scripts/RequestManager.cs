@@ -189,6 +189,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         SetLayerRecursively(itemCopy, LayerMask.NameToLayer("UI"));
         itemCopy.transform.parent = requestUI.GetHandle();
         itemCopy.transform.localScale = Vector3.one * requestedItem._uiSize;
+        itemCopy.transform.localEulerAngles = requestedItem._uiRotation;
         itemCopy.transform.localPosition = Vector3.zero;
         Vector3 rot = new Vector3(0, 360, 0);
         // itemCopy.transform.DORotate(rot, 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
