@@ -165,7 +165,9 @@ MonoBehaviour:
   level: {fileID: 0}
   gridCoords: {x: 0, y: 0}
   _itemHandles: []
+  groundRenderer: {fileID: 3190139444449166269}
   comptoir: 0
+  letterID: 0
   _comptoirTrigger: {fileID: -4591529762369281344}
 --- !u!65 &-4591529762369281344
 BoxCollider:
@@ -593,6 +595,12 @@ PrefabInstance:
 --- !u!4 &2150050382070932678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2856492743035690068, guid: 114e6c968abab2e4db1810006513eca6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4211655571987265682}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3190139444449166269 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1600863098477132591, guid: 114e6c968abab2e4db1810006513eca6,
     type: 3}
   m_PrefabInstance: {fileID: 4211655571987265682}
   m_PrefabAsset: {fileID: 0}

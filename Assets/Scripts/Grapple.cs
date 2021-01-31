@@ -67,6 +67,9 @@ public class Grapple : MonoBehaviour
 
         while (true)
         {
+            if (isGrabbing)
+                break;
+
             Vector3 newPos = Vector3.MoveTowards(hookTrf.position, target, speed * Time.fixedDeltaTime);
             hookRB.MovePosition(newPos);
 
