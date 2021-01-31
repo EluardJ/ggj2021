@@ -45,12 +45,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoAddChunkInterval: 30
+  chunkMoveTime: 1.5
+  groundLetterTextures:
+  - {fileID: 2800000, guid: 09fe03afb430f964b93b293ec1ad2cec, type: 3}
+  - {fileID: 2800000, guid: 6fc1e79327a635f40b7bd35e9ed56b23, type: 3}
+  - {fileID: 2800000, guid: 8602d8f3d0ca3094bbad055b7a85ab81, type: 3}
+  - {fileID: 2800000, guid: 625b511097b25c24da43c0f034bc9e15, type: 3}
+  - {fileID: 2800000, guid: 46481d884da444244955ca50fe36669b, type: 3}
+  - {fileID: 2800000, guid: 1dc458fadf0c3184f8122eed7c678799, type: 3}
+  - {fileID: 2800000, guid: 524ed4b91544dbb47836619e624dee6d, type: 3}
+  - {fileID: 2800000, guid: 99b3a63b619d0324d9836ba74fc2940b, type: 3}
+  - {fileID: 2800000, guid: b0c462c5510bdbf429d45a2b626fa0ef, type: 3}
+  - {fileID: 2800000, guid: bd57f50048a2f43468268901b56e8d46, type: 3}
+  - {fileID: 2800000, guid: 149df5dfe418e184c8eeedad2ad7287b, type: 3}
+  - {fileID: 2800000, guid: 2e5cdf467d4329045a85ead6f4cc3b0d, type: 3}
+  - {fileID: 2800000, guid: 7b421e2b57d2af94c9f430b68031723c, type: 3}
+  - {fileID: 2800000, guid: feb8aba61d7d9aa4c82dfa1d94e6da1c, type: 3}
+  - {fileID: 2800000, guid: 4ad32b366a4a86a41b9cf3602fa9afcd, type: 3}
+  - {fileID: 2800000, guid: 6571d0d2dbef85e47ba37d68bd6fac2e, type: 3}
+  - {fileID: 2800000, guid: 76022a22933a29c48aa0ca3711fab3c7, type: 3}
   speedTestModifier: 1
   gridDimensions: 3
   chunkSize: 10
   chunkPrefabs: []
   comptoirPrefab: {fileID: 0}
   comptoirCoordinates: {x: 0, y: 0}
+  _requestManager: {fileID: 0}
 --- !u!114 &3748341326222611052
 MonoBehaviour:
   m_ObjectHideFlags: 0
