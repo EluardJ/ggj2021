@@ -14,11 +14,17 @@ public class TimerUI : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.timer > 99)
-            timerText.SetText("{0:0}", gameManager.timer);
-        else
-            timerText.SetText("{0:2}", gameManager.timer);
+        float value = gameManager.timer;
 
-        progress.fillAmount = (gameManager.timer / gameManager.gameTime);
+        if (value < 0)
+            value = 0;
+
+
+        if (value > 99)
+            timerText.SetText("{0:0}", value);
+        else
+            timerText.SetText("{0:2}", value);
+
+        progress.fillAmount = (value / gameManager.gameTime);
     }
 }
