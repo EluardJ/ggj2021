@@ -13,8 +13,38 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
     private List<Item> _currentlyRequestedItems = new List<Item>();
     private Dictionary<Item, RequestUI> _requestUILookup = new Dictionary<Item, RequestUI>();
     private Dictionary<Transform, Item> _transformToItemLookup = new Dictionary<Transform, Item>();
+    // private Dictionary<Item, Chunk> _transformToItemLookup = new Dictionary<Transform, Item>();
+
     private int nextRequestedItemId = 0;
     private int _count;
+    private string[] lettres = new string[] {
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"        
+    };
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +85,12 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                         itemGameObject.transform.rotation = t.rotation;
                         itemGameObject.transform.parent = t.parent;
                         Item newItem = itemGameObject.GetComponent<Item>();
+                        int letterId = chunk.letterID;
+                        string chunkLabel = "?";
+                        if (letterId >= 0 && letterId < lettres.Length) {
+                            chunkLabel = lettres[letterId];
+                        }
+                        newItem.SetChunkLabel(chunkLabel);
                         newItem.SetRequestManager(this);
                         newChunkItems[i] = newItem;
                         _transformToItemLookup[t] = newItem;
@@ -145,6 +181,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         RequestUI requestUI = GameObject.Instantiate(_requestUI_template).GetComponent<RequestUI>();
         requestUI.transform.SetParent(_requestUI_template.transform.parent, false);
         requestUI.gameObject.SetActive(true);
+        requestUI.SetLabel(requestedItem.GetChunkLabel());
 
         GameObject itemCopy = Instantiate(requestedItem.gameObject);
         if (itemCopy.transform.GetComponent<Rigidbody>() != null) {
