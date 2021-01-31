@@ -22,11 +22,11 @@ public class Hook : MonoBehaviour
     #endregion
 
     #region Unity Callbacks
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (isActive && !isHoldingSomething && collision.gameObject.CompareTag("Movable"))
-            Grab(collision.transform, collision.GetContact(0).normal);
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (isActive && !isHoldingSomething && collision.gameObject.CompareTag("Movable"))
+    //        Grab(collision.transform);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -57,13 +57,13 @@ public class Hook : MonoBehaviour
         isActive = activate;
     }
 
-    private void Grab(Transform objectToGrab, Vector3 contactNormal)
+    public void Grab(Transform objectToGrab)
     {
         isHoldingSomething = true;
         isActive = false;
         grabbedObject = objectToGrab.gameObject;
 
-        contactNormal = (objectToGrab.position - transform.position).normalized;
+        Vector3 contactNormal = (objectToGrab.position - transform.position).normalized;
         transform.rotation = Quaternion.LookRotation(contactNormal);
 
         objectToGrab.parent = transform;
