@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager = default;
+    [SerializeField] GameObject panel = default;
 
-    private void Start()
-    {
-        StartGame();
-    }
+    [SerializeField] GameManager gameManager = default;
 
     public void StartGame()
     {
         gameManager.StartGame();
 
-        gameObject.SetActive(false);
+        panel.SetActive(false);
     }
 }
