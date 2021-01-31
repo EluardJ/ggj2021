@@ -11,9 +11,9 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4101444
   m_Center: {x: 0.00068695843, y: -0.021568775, z: -0.0005165413}
---- !u!114 &8281500118525591968
+--- !u!114 &-2858332807715873986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _uiSize: 0.8
+  _uiSize: 1
 --- !u!1001 &8542033668307238502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49,15 +49,10 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 0.15
       objectReference: {fileID: 0}
-    - target: {fileID: 4855824334501222928, guid: fd685f68b6982e94383a725a0fe74f1b,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_Name
-      value: DragonBall
+      value: ApplePurple
       objectReference: {fileID: 0}
     - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
@@ -73,21 +68,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
@@ -168,17 +148,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
@@ -232,20 +212,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
-        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 56a5a4639047b7c49ae94cc1cb2bf336, type: 2}
-    - target: {fileID: -5754084199372789682, guid: 66405acfe5a9bc84c991aeb7c39f6658,
+      objectReference: {fileID: 2100000, guid: fbd1c3f5131cee9479be23afc21013cb, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
-      propertyPath: m_Mesh
+      propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: -1423607877536718600, guid: fb595bad250e4c04a85184ce4a3c0d62,
+      objectReference: {fileID: 2100000, guid: da61db437d5bb10409c37c36c4036e5f, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9f3881472e9e7147b414e6ef55d89b1, type: 2}
     - target: {fileID: 919132149155446097, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_Name

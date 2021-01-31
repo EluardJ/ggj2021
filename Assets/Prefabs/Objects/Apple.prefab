@@ -26,6 +26,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
+  _uiSize: 1
 --- !u!1001 &8542033668307238502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +215,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 72cac1b4c1b8654469729af8405b9637, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: da61db437d5bb10409c37c36c4036e5f, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: f9f3881472e9e7147b414e6ef55d89b1, type: 2}
     - target: {fileID: 919132149155446097, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_Name

@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!135 &6267396215845153308
-SphereCollider:
+--- !u!65 &5826949408271148382
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11,8 +11,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0.00068695843, y: -0.021568775, z: -0.0005165413}
+  m_Size: {x: 0.500321, y: 0.5069742, z: 0.39672986}
+  m_Center: {x: 0, y: 0, z: 0.031991735}
 --- !u!114 &8281500118525591968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _uiSize: 0.8
+  _uiSize: 1.25
 --- !u!1001 &8542033668307238502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ PrefabInstance:
     - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_Name
-      value: DragonBall
+      value: TV3
       objectReference: {fileID: 0}
     - target: {fileID: 8785772501829920157, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
@@ -77,17 +77,17 @@ PrefabInstance:
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9164364135072589245, guid: fd685f68b6982e94383a725a0fe74f1b,
         type: 3}
@@ -233,18 +233,38 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 56a5a4639047b7c49ae94cc1cb2bf336, type: 2}
+      objectReference: {fileID: 2100000, guid: 9b3bae9f5a34409498a485be5ca4e0f8, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5af56586140c0f043ac8796571a129e1, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1bb6cb533784dd498c9ab755a7f26e8, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7557d51e099873b40b50c84261e3559d, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 66405acfe5a9bc84c991aeb7c39f6658,
+        type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: ea70e79c9c6ab404185b2c7a340d9122, type: 2}
     - target: {fileID: -5754084199372789682, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -1423607877536718600, guid: fb595bad250e4c04a85184ce4a3c0d62,
+      objectReference: {fileID: -3734136656694947978, guid: 2db87e690456c8b4da8d406bb1a48305,
         type: 3}
     - target: {fileID: 919132149155446097, guid: 66405acfe5a9bc84c991aeb7c39f6658,
         type: 3}
