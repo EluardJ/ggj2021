@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void OnSuccess () {
-        _score += 1000;
+        _score = _score + 1000;
         if (_scoreDisplay != null) {
             _scoreDisplay.SetScore(_score);
         }
