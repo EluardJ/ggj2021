@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] float gameTime = 60;
+
     public GridGenerator _gridGenerator;
     public RequestManager _requestManager;
-    // Start is called before the first frame update
-    void Start()
+
+    bool gameIsOn = false;
+    [HideInInspector] public float timer = 0;
+
+    private void Update()
     {
-        if (_gridGenerator != null) {
+        if (Input.GetKeyDown(KeyCode.S))
+            StartGame();
+
+        if (gameIsOn)
+        {
+            timer -= Time.deltaTime;
+        }
+    }
+
+    public void StartGame()
+    {
+        gameIsOn = true;
+
+        if (_gridGenerator != null)
+        {
             _gridGenerator._useAutoGeneration = false;
             _gridGenerator.SetGridLevel(_gridGenerator.GetComponent<GridLevel>());
             _gridGenerator.Generate();
         }
-        if (_requestManager != null) {
+        if (_requestManager != null)
+        {
             _requestManager._gridLevel = _gridGenerator.GetComponent<GridLevel>();
             _requestManager.InitializeRequestItems();
             _requestManager.SetRequestCount(3);
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        timer = gameTime;
     }
 }
