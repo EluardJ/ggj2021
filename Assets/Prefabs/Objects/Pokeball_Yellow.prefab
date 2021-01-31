@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5191299131333597674}
   - component: {fileID: 7598432488241717197}
   m_Layer: 10
-  m_Name: Pokeball
+  m_Name: Pokeball_Yellow
   m_TagString: Movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40ea8522a13b6344381cc20a1def6094, type: 2}
+  - {fileID: 2100000, guid: 0e966b4500a5aae4fabac7503fb26ab5, type: 2}
   - {fileID: 2100000, guid: 01ed6a148fe7c864f8d7279032535eef, type: 2}
   - {fileID: 2100000, guid: c1bb6cb533784dd498c9ab755a7f26e8, type: 2}
   m_StaticBatchInfo:
