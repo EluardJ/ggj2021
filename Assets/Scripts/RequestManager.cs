@@ -175,6 +175,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         nextRequestedItemId++;
         if (requestedItem == null || requestedItem.gameObject == null) {
             PushNextRequest();
+            return;
         }
         RequestUI requestUI = GameObject.Instantiate(_requestUI_template).GetComponent<RequestUI>();
         requestUI.transform.SetParent(_requestUI_template.transform.parent, false);
