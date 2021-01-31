@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4193346299848321945}
   - component: {fileID: 1622494554621833137}
   - component: {fileID: -7439456831868261924}
+  - component: {fileID: -358529275412288950}
   m_Layer: 0
   m_Name: Toad
   m_TagString: Movable
@@ -124,3 +125,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5349294014567426106, guid: f3cdb8194a7b7e140ab008a1901de3cc, type: 3}
+--- !u!114 &-358529275412288950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871427271722757778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca07adb69c693334097e26e9e1aabd9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 0}
+  _uiSize: 1
