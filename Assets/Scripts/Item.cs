@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public Sprite _icon;
+    string _chunkLabel;
     RequestManager _requestManager;
 
     // Start is called before the first frame update
@@ -18,6 +19,12 @@ public class Item : MonoBehaviour
     {
         
     }
+    public void SetChunkLabel (string chunkLabel) {
+        _chunkLabel = chunkLabel;
+    }
+    public string GetChunkLabel () {
+        return _chunkLabel;
+    } 
     public Sprite GetIcon () {
         return _icon;
     }
