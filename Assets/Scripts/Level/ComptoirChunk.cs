@@ -5,9 +5,6 @@ using UnityEngine;
 public class ComptoirChunk : RoomChunk
 {
     public BoxCollider _comptoirTrigger;
-
-    [SerializeField] ParticleSystem getObjectParticle = default;
-
     private List<IComptoirTriggerListener> _listeners = new List<IComptoirTriggerListener>();
 
     public bool OnItemEnter(Item item)
@@ -28,10 +25,6 @@ public class ComptoirChunk : RoomChunk
                 hasBeenDropped = hasBeenDropped || listener.OnItemDropped(item);
             }
         }
-
-        if (hasBeenDropped)
-            getObjectParticle.Play();
-
         return hasBeenDropped;
     }
 

@@ -10,10 +10,10 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
     public GameObject[] _itemPrefabs;
     public Item[] _requestedItems;
     public GameObject _requestUI_template;
-    public GameManager _gameManager;
     private List<Item> _currentlyRequestedItems = new List<Item>();
     private Dictionary<Item, RequestUI> _requestUILookup = new Dictionary<Item, RequestUI>();
     private Dictionary<Transform, Item> _transformToItemLookup = new Dictionary<Transform, Item>();
+    public GameManager _gameManager;
     // private Dictionary<Item, Chunk> _transformToItemLookup = new Dictionary<Transform, Item>();
     public int _itemPerChunk = 1;
 
@@ -48,15 +48,6 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         "Y",
         "Z"        
     };
-    public void Start () {
-        // shuffle prefabs.              
-        for (int i = 0; i < _itemPrefabs.Length; i++) {
-            GameObject temp = _itemPrefabs[i];
-            int randomIndex = Random.Range(i, _itemPrefabs.Length);
-            _itemPrefabs[i] = _itemPrefabs[randomIndex];
-            _itemPrefabs[randomIndex] = temp;
-        }
-    } 
 
     public void InitializeRequestItems () {
         List<Item> items = new List<Item>();
@@ -159,8 +150,8 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         bool isSuccess = false;     
         foreach (Item currentlyRequestedItem in _currentlyRequestedItems) {
             if (item == currentlyRequestedItem) {
-                Debug.Log("=========>SUCCESS<=========  (" + Time.frameCount + ")");
-                // _gameManager.OnSuccess();
+                Debug.Log("Success !");
+                _gameManager.OnSuccess();
                 isSuccess = true;
             }
         }
@@ -197,7 +188,6 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         SetLayerRecursively(itemCopy, LayerMask.NameToLayer("UI"));
         itemCopy.transform.parent = requestUI.GetHandle();
         itemCopy.transform.localScale = Vector3.one * requestedItem._uiSize;
-        itemCopy.transform.localEulerAngles = requestedItem._uiRotation;
         itemCopy.transform.localPosition = Vector3.zero;
         Vector3 rot = new Vector3(0, 360, 0);
         // itemCopy.transform.DORotate(rot, 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
