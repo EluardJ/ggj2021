@@ -932,7 +932,7 @@ MonoBehaviour:
   comptoir: 0
   letterID: 0
   _comptoirTrigger: {fileID: -4591529762369281344}
-  getObjectParticle: {fileID: 1257332887307174579}
+  successParticles: {fileID: 1257332887307174579}
 --- !u!65 &-4591529762369281344
 BoxCollider:
   m_ObjectHideFlags: 0
