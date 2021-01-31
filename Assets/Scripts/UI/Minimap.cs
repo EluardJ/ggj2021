@@ -8,6 +8,8 @@ public class Minimap : MonoBehaviour
 {
     public GridLevel gridLevel = default;
 
+    [SerializeField] Sprite comptoirIcon = null;
+
     [SerializeField] Color normalBackground = default;
     [SerializeField] Color comptoirBackground = default;
 
@@ -70,12 +72,17 @@ public class Minimap : MonoBehaviour
     {
         foreach (KeyValuePair<Vector2, RoomChunk> chunk in gridLevel.chunks)
         {
-            letters[chunk.Key].SetText(alphabet[chunk.Value.letterID]);
 
             if (gridLevel.comptoirCoordinates == chunk.Key)
+            {
+                letters[chunk.Key].SetText("<sprite index=0>");
                 backgrounds[chunk.Key].color = comptoirBackground;
+            }
             else
-                backgrounds[chunk.Key].color = normalBackground ;
+            {
+                letters[chunk.Key].SetText(alphabet[chunk.Value.letterID]);
+                backgrounds[chunk.Key].color = normalBackground;
+            }
 
         }
     }
