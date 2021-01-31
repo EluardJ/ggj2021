@@ -77,7 +77,7 @@ public class Thrower : MonoBehaviour
 
         Vector3 direction = GetLookDirection() + Vector3.up * upwardModifier;
 
-        grapple.Throw(chargeAmount * direction);
+        grapple.Throw(chargeAmount * direction, chargeAmount);
 
         isCharging = false;
     }
