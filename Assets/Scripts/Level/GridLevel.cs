@@ -9,7 +9,7 @@ public class GridLevel : MonoBehaviour
     [Range(0.1f, 2.5f)]
     public float chunkMoveTime = 1.5f;
     public Texture2D[] groundLetterTextures = default;
-    /*[HideInInspector]*/ public float speedTestModifier = 1f;
+    [HideInInspector] public float speedTestModifier = 1f;
 
     public Dictionary<Vector2, RoomChunk> chunks = new Dictionary<Vector2, RoomChunk>();
     public Dictionary<Vector2, Wall> walls = new Dictionary<Vector2, Wall>();
@@ -19,6 +19,7 @@ public class GridLevel : MonoBehaviour
     [HideInInspector] public GameObject comptoirPrefab = default;
     [HideInInspector] public Vector2 comptoirCoordinates = default;
     public RequestManager _requestManager;
+    public Minimap minimap;
 
     float elapedTimeSinceChange = 0f;
     #endregion
@@ -36,11 +37,27 @@ public class GridLevel : MonoBehaviour
             {
                 _requestManager.OnChunckChanged();
             }
+
+            StartCoroutine(UpdateMinimap());
         }
     }
     #endregion
 
     #region Functions
+    public void OnLevelGenerated()
+    {
+        if (minimap != null)
+            minimap.GenerateMinimap();
+    }
+
+    private IEnumerator UpdateMinimap()
+    {
+        yield return new WaitForSeconds(chunkMoveTime + 0.1f);
+
+        if (minimap != null)
+            minimap.OnChunkChanged();
+    }
+
     private void AddChunkAtRandom()
     {
         bool horizontal = true;
@@ -84,7 +101,7 @@ public class GridLevel : MonoBehaviour
                 if (comptoirCoordinates == new Vector2(spawnPosition.x, gridDimensions - 1))
                     replaceComptoir = true;
 
-                letterID = chunks[new Vector2(spawnPosition.x, 0)].letterID;
+                letterID = chunks[new Vector2(spawnPosition.x, gridDimensions - 1)].letterID;
             }
         }
 

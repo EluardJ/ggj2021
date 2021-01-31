@@ -26,6 +26,9 @@ public class Grapple : MonoBehaviour
     ObiRope rope;
 
     [HideInInspector] public bool isGrabbing = false;
+    [HideInInspector] public bool isLaunching = false;
+
+    float previousInput = 0;
     #endregion
 
     #region Unity Callbacks
@@ -39,11 +42,13 @@ public class Grapple : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (previousInput < 1 && Input.GetAxisRaw("RightTrigger") > 0)
         {
-            if (!isGrabbing)
+            if (!isGrabbing && !isLaunching)
                 LaunchGrapple();
         }
+
+        previousInput = Input.GetAxisRaw("RightTrigger");
     }
     #endregion
 
@@ -57,7 +62,7 @@ public class Grapple : MonoBehaviour
     {
         hookTrf.parent = null;
         hookRB.isKinematic = true;
-        //hookCollider.enabled = true;
+        isLaunching = true;
         hook.ToggleActivate(true);
 
         Vector3 target = player.position + player.forward * distance;
@@ -85,6 +90,7 @@ public class Grapple : MonoBehaviour
 
         hookRB.isKinematic = false;
         hook.ToggleActivate(false);
+        isLaunching = false;
 
         StartCoroutine(RetrieveGrappleIE());
     }
@@ -108,10 +114,33 @@ public class Grapple : MonoBehaviour
 
         cursor.ChangeLength(minRopeLength);
 
-        //hookCollider.enabled = false;
-        //hookRB.isKinematic = true;
-        //hookTrf.DORotate(hookHolder.forward, 0.2f);
-        //hookTrf.DOMove(hookHolder.position + hookHolder.forward * 0.5f, 0.2f).OnComplete(RetrieveHook);
+        if (!isGrabbing)
+        {
+            StartCoroutine(RetrieveHookIE());
+        }
+    }
+
+    private IEnumerator RetrieveHookIE()
+    {
+        hookRB.isKinematic = true;
+
+        float elapsedTime = 0;
+        Vector3 originPosition = hookTrf.position;
+        Quaternion originRotation = hookTrf.rotation;
+
+        while (elapsedTime < 0.2f)
+        {
+            elapsedTime += Time.deltaTime;
+
+            hookTrf.position = Vector3.Lerp(originPosition, hookHolder.position + hookHolder.forward * 0.5f, elapsedTime / 0.2f);
+            hookTrf.rotation = Quaternion.Lerp(originRotation, Quaternion.LookRotation(player.forward), elapsedTime / 0.2f);
+
+            yield return null;
+        }
+
+        hookTrf.rotation = Quaternion.LookRotation(player.forward);
+        hookTrf.position = hookHolder.position + hookHolder.forward * 0.5f;
+        hookTrf.parent = hookHolder;
     }
 
     public void Throw(Vector3 force)
@@ -119,12 +148,10 @@ public class Grapple : MonoBehaviour
         hook.Throw(force);
 
         isGrabbing = false;
+
+        StartCoroutine(RetrieveGrappleIE());
     }
 
-    //private void RetrieveHook()
-    //{
-    //    hookTrf.parent = hookHolder;
-    //}
     public void Drop()
     {
         isGrabbing = false;

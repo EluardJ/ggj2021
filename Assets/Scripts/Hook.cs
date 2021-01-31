@@ -11,6 +11,9 @@ public class Hook : MonoBehaviour
     [SerializeField] PhysicMaterial draggedObjectMaterial = default;
     [SerializeField] Rigidbody hookRb = default;
 
+    [SerializeField] ParticleSystem grabParticles = default;
+    [SerializeField] ParticleSystem throwParticles = default;
+
     [HideInInspector] public Grapple grapple = default;
     [HideInInspector] public GameObject grabbedObject = default;
 
@@ -71,6 +74,8 @@ public class Hook : MonoBehaviour
         Destroy(otherRB);
         objectToGrab.GetComponent<Collider>().material = draggedObjectMaterial;
 
+        grabParticles.Play();
+
         grapple.Grab();
     }
 
@@ -86,6 +91,8 @@ public class Hook : MonoBehaviour
         Rigidbody otherRB = grabbedObject.AddComponent<Rigidbody>();
         otherRB.mass = grabbedMass;
         otherRB.AddForce(force, ForceMode.Impulse);
+
+        throwParticles.Play();
 
         isHoldingSomething = false;
     }
