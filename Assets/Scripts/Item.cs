@@ -10,34 +10,29 @@ public class Item : MonoBehaviour
 
     public float _uiSize = 1f;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetChunkLabel(string chunkLabel)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void SetChunkLabel (string chunkLabel) {
         _chunkLabel = chunkLabel;
     }
-    public string GetChunkLabel () {
+    public string GetChunkLabel()
+    {
         return _chunkLabel;
-    } 
-    public Sprite GetIcon () {
+    }
+    public Sprite GetIcon()
+    {
         return _icon;
     }
-    
-    public void SetRequestManager (RequestManager requestManager) {
+
+    public void SetRequestManager(RequestManager requestManager)
+    {
         _requestManager = requestManager;
     }
 
-    private void OnDestroy () {
+    private void OnDestroy()
+    {
         Debug.Log("Item destroyed");
-        if (_requestManager != null) {
+        if (_requestManager != null)
+        {
             _requestManager.OnItemDestroyed(this);
         }
     }
@@ -45,15 +40,17 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Hook hook = null;
-        if (other.attachedRigidbody != null) {
+        if (other.attachedRigidbody != null)
+        {
             hook = other.attachedRigidbody.GetComponent<Hook>();
         }
-        if (hook != null){
+        if (hook != null)
+        {
             Debug.Log("=========>HOOK<=========  (" + Time.frameCount + ")");
         }
-        ComptoirChunk comptoirChunk = other.GetComponent<ComptoirChunk>();
-        if (comptoirChunk != null) {
-            comptoirChunk.OnItemEnter(this);
-        }
+        //ComptoirChunk comptoirChunk = other.GetComponent<ComptoirChunk>();
+        //if (comptoirChunk != null) {
+        //    comptoirChunk.OnItemEnter(this);
+        //}
     }
 }

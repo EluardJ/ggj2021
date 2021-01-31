@@ -76,10 +76,10 @@ public class Hook : MonoBehaviour
 
         grabParticles.Play();
 
-        grapple.Grab();
+        grapple.Grab(objectToGrab.GetComponent<Movable>()); ;
     }
 
-    public void Throw(Vector3 force)
+    public void Throw(Vector3 force, float power)
     {
         Movable movable = grabbedObject.GetComponent<Movable>();
         if (movable != null)
@@ -91,10 +91,14 @@ public class Hook : MonoBehaviour
         Rigidbody otherRB = grabbedObject.AddComponent<Rigidbody>();
         otherRB.mass = grabbedMass;
         otherRB.AddForce(force, ForceMode.Impulse);
+        Vector3 torque = new Vector3(Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f), Random.RandomRange(0f, 1f)) * power;
+        otherRB.AddTorque(torque, ForceMode.Impulse);
 
         throwParticles.Play();
 
         isHoldingSomething = false;
+
+        grabbedObject = null;
     }
     public void DropItem()
     {

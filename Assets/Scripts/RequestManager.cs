@@ -47,16 +47,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         "Y",
         "Z"        
     };
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void InitializeRequestItems () {
         List<Item> items = new List<Item>();
         if (_gridLevel != null) {
@@ -180,6 +171,9 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         }
         Item requestedItem = _requestedItems[nextRequestedItemId];
         nextRequestedItemId++;
+        if (requestedItem == null || requestedItem.gameObject == null) {
+            PushNextRequest();
+        }
         RequestUI requestUI = GameObject.Instantiate(_requestUI_template).GetComponent<RequestUI>();
         requestUI.transform.SetParent(_requestUI_template.transform.parent, false);
         requestUI.gameObject.SetActive(true);

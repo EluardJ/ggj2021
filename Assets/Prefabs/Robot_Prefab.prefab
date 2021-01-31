@@ -43,7 +43,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.09
+  m_Radius: 1.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &633685326
 MonoBehaviour:
@@ -9603,6 +9603,7 @@ GameObject:
   - component: {fileID: 7477462267796333181}
   - component: {fileID: 1012630191}
   - component: {fileID: 159105807}
+  - component: {fileID: 3713361077722020141}
   m_Layer: 25
   m_Name: Robot_Prefab
   m_TagString: Untagged
@@ -9617,7 +9618,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7477462267796333178}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9679,6 +9680,7 @@ MonoBehaviour:
   _driftTrails:
   - {fileID: 5152586592664758530}
   - {fileID: 5000465948228739475}
+  _animator: {fileID: 3713361077722020141}
 --- !u!114 &6239889121022621659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9755,6 +9757,25 @@ MonoBehaviour:
   - {fileID: 7879014733488583434}
   - {fileID: 1654126487192289323}
   - {fileID: 5333881938547468448}
+--- !u!95 &3713361077722020141
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477462267796333178}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7cc89ec254008b64f91d955dcd46e789, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7598296613469676801
 GameObject:
   m_ObjectHideFlags: 0
@@ -15749,6 +15770,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d967e7093870c74f9351c2b7f802aba, type: 3}
+--- !u!4 &1654126487192289323 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1654126487819274284, guid: 2d967e7093870c74f9351c2b7f802aba,
+    type: 3}
+  m_PrefabInstance: {fileID: 1788938247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1654126487192289364 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1654126487819274323, guid: 2d967e7093870c74f9351c2b7f802aba,
@@ -15764,12 +15791,6 @@ MonoBehaviour:
 --- !u!54 &1654126487192289366 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 1654126487819274321, guid: 2d967e7093870c74f9351c2b7f802aba,
-    type: 3}
-  m_PrefabInstance: {fileID: 1788938247}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1654126487192289323 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1654126487819274284, guid: 2d967e7093870c74f9351c2b7f802aba,
     type: 3}
   m_PrefabInstance: {fileID: 1788938247}
   m_PrefabAsset: {fileID: 0}

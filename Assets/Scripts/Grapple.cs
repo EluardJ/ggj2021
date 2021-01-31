@@ -28,9 +28,6 @@ public class Grapple : MonoBehaviour
     public enum State { Docked, Launching, Grabbing, Throwing, RetrievingGrapple, RetrievingHook }
     [HideInInspector] public State state = default;
 
-    //[HideInInspector] public bool isGrabbing = false;
-    //[HideInInspector] public bool isLaunching = false;
-
     float previousInput = 0;
     #endregion
 
@@ -67,7 +64,6 @@ public class Grapple : MonoBehaviour
     {
         hookTrf.parent = null;
         hookRB.isKinematic = true;
-        //isLaunching = true;
         state = State.Launching;
         hook.ToggleActivate(true);
 
@@ -155,11 +151,10 @@ public class Grapple : MonoBehaviour
         state = State.Docked;
     }
 
-    public void Throw(Vector3 force)
+    public void Throw(Vector3 force, float power)
     {
-        hook.Throw(force);
+        hook.Throw(force, power);
 
-        //isGrabbing = false;
         state = State.Throwing;
 
         StartCoroutine(RetrieveGrappleIE());
@@ -167,15 +162,27 @@ public class Grapple : MonoBehaviour
 
     public void Drop()
     {
-        //isGrabbing = false;
+        state = State.RetrievingGrapple;
+
         StartCoroutine(RetrieveGrappleIE());
     }
-    public void Grab()
+    public void Grab(Movable movable)
     {
-        //isGrabbing = true;
+        if (movable != null)
+            movable.grapple = this;
+
         state = State.Grabbing;
 
         thrower.Grab();
+    }
+
+    public void TryDropThis(GameObject go)
+    {
+        if (go == hook.grabbedObject)
+        {
+            hook.DropItem();
+            Drop();
+        }
     }
     #endregion
 }
