@@ -140,5 +140,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  _uiSize: 2
+  _uiSize: 1.5
   _uiRotation: {x: 0, y: 45, z: 0}
