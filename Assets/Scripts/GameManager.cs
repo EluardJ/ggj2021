@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     bool gameIsOn = false;
     [HideInInspector] public float timer = 0;
 
+    public delegate void Function();
+    public Function GameEnd;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -20,6 +23,9 @@ public class GameManager : MonoBehaviour
         if (gameIsOn)
         {
             timer -= Time.deltaTime;
+
+            if (timer <= 0)
+                EndGame();
         }
     }
 
@@ -41,5 +47,12 @@ public class GameManager : MonoBehaviour
         }
 
         timer = gameTime;
+    }
+
+    public void EndGame()
+    {
+        gameIsOn = false;
+
+        GameEnd?.Invoke();
     }
 }
