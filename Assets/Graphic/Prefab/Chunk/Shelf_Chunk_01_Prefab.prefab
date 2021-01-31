@@ -1252,6 +1252,9 @@ MonoBehaviour:
   level: {fileID: 0}
   gridCoords: {x: 0, y: 0}
   _itemHandles:
+  - {fileID: 6716996995780814699}
+  - {fileID: 7956600254205743736}
+  - {fileID: 8847361134468336291}
   - {fileID: 6537579314799486963}
   - {fileID: 6261837710763252188}
   - {fileID: 7957006425935613833}
