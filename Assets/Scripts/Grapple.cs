@@ -164,6 +164,8 @@ public class Grapple : MonoBehaviour
     {
         state = State.RetrievingGrapple;
 
+        hook.DropItem();
+
         StartCoroutine(RetrieveGrappleIE());
     }
     public void Grab(Movable movable)
@@ -180,7 +182,6 @@ public class Grapple : MonoBehaviour
     {
         if (go == hook.grabbedObject)
         {
-            hook.DropItem();
             Drop();
         }
     }

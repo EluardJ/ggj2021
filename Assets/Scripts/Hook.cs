@@ -42,6 +42,7 @@ public class Hook : MonoBehaviour
             if (hasBeenDropped)
             {
                 DropItem();
+
                 if (grapple != null)
                 {
                     grapple.Drop();
@@ -107,6 +108,7 @@ public class Hook : MonoBehaviour
             hookRb.mass -= grabbedMass;
         }
         isHoldingSomething = false;
+        grabbedObject.transform.parent = null;
         grabbedObject = null;
     }
     #endregion

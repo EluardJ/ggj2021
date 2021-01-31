@@ -64,9 +64,16 @@ public class Movable : MonoBehaviour
         Item item = GetComponent<Item>();
 
         if (item != null)
-            comptoir.OnItemEnter(item);
+        {
+            if (comptoir.OnItemEnter(item))
+            {
 
-        Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
     }
     #endregion
 }
