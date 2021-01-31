@@ -13,6 +13,7 @@ public class DashController : MonoBehaviour, IController
     bool dashWasPressed;
     float consumeTime = -1f;
     Vector3 deshVelocity;
+    public ParticleSystem[] _dashEffects;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,9 @@ public class DashController : MonoBehaviour, IController
             deshVelocity = dashDirection * speed;
             dashWasPressed = false;
             consumeTime = Time.time;
+            foreach (ParticleSystem effect in _dashEffects) {
+                effect.Play();
+            }
         }
     }
     public Vector3 GetDashVelocity () {

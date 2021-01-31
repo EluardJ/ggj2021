@@ -9595,6 +9595,8 @@ MonoBehaviour:
   speed: 250
   cooldown: 1.59
   decay: 100
+  _dashEffects:
+  - {fileID: 51855764981616253}
 --- !u!114 &7477462267796333183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15346,6 +15348,12 @@ PrefabInstance:
 --- !u!4 &68029588368825297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7135145428913604654, guid: f88fd4375b2bd394dbb776bd5c861e71,
+    type: 3}
+  m_PrefabInstance: {fileID: 7202540558266749951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &51855764981616253 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7155281861065596290, guid: f88fd4375b2bd394dbb776bd5c861e71,
     type: 3}
   m_PrefabInstance: {fileID: 7202540558266749951}
   m_PrefabAsset: {fileID: 0}
