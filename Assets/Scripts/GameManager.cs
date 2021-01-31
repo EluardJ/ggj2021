@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] float gameTime = 60;
+    [SerializeField] public float gameTime = 60;
 
     public GridGenerator _gridGenerator;
     public RequestManager _requestManager;
