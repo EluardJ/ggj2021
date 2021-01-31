@@ -25,8 +25,11 @@ public class Grapple : MonoBehaviour
     ObiRopeCursor cursor;
     ObiRope rope;
 
-    [HideInInspector] public bool isGrabbing = false;
-    [HideInInspector] public bool isLaunching = false;
+    public enum State { Docked, Launching, Grabbing, Throwing, RetrievingGrapple, RetrievingHook }
+    [HideInInspector] public State state = default;
+
+    //[HideInInspector] public bool isGrabbing = false;
+    //[HideInInspector] public bool isLaunching = false;
 
     float previousInput = 0;
     #endregion
@@ -46,7 +49,7 @@ public class Grapple : MonoBehaviour
     {
         if (previousInput < 1 && Input.GetAxisRaw("RightTrigger") > 0)
         {
-            if (!isGrabbing && !isLaunching)
+            if (state == State.Docked)
                 LaunchGrapple();
         }
 
@@ -64,7 +67,8 @@ public class Grapple : MonoBehaviour
     {
         hookTrf.parent = null;
         hookRB.isKinematic = true;
-        isLaunching = true;
+        //isLaunching = true;
+        state = State.Launching;
         hook.ToggleActivate(true);
 
         Vector3 target = player.position + player.forward * distance;
@@ -74,7 +78,7 @@ public class Grapple : MonoBehaviour
 
         while (true)
         {
-            if (isGrabbing)
+            if (state == State.Grabbing)
                 break;
 
             Vector3 newPos = Vector3.MoveTowards(hookTrf.position, target, speed * Time.fixedDeltaTime);
@@ -92,13 +96,15 @@ public class Grapple : MonoBehaviour
 
         hookRB.isKinematic = false;
         hook.ToggleActivate(false);
-        isLaunching = false;
 
         StartCoroutine(RetrieveGrappleIE());
     }
 
     private IEnumerator RetrieveGrappleIE()
     {
+        if (state != State.Grabbing)
+            state = State.RetrievingGrapple;
+
         if (!hook.isHoldingSomething)
             minRopeLength = 0.5f;
         else
@@ -116,7 +122,7 @@ public class Grapple : MonoBehaviour
 
         cursor.ChangeLength(minRopeLength);
 
-        if (!isGrabbing)
+        if (state != State.Grabbing)
         {
             StartCoroutine(RetrieveHookIE());
         }
@@ -124,6 +130,8 @@ public class Grapple : MonoBehaviour
 
     private IEnumerator RetrieveHookIE()
     {
+        state = State.RetrievingHook;
+
         hookRB.isKinematic = true;
 
         float elapsedTime = 0;
@@ -143,24 +151,29 @@ public class Grapple : MonoBehaviour
         hookTrf.rotation = Quaternion.LookRotation(player.forward);
         hookTrf.position = hookHolder.position + hookHolder.forward * 0.5f;
         hookTrf.parent = hookHolder;
+
+        state = State.Docked;
     }
 
     public void Throw(Vector3 force)
     {
         hook.Throw(force);
 
-        isGrabbing = false;
+        //isGrabbing = false;
+        state = State.Throwing;
 
         StartCoroutine(RetrieveGrappleIE());
     }
 
     public void Drop()
     {
-        isGrabbing = false;
+        //isGrabbing = false;
+        StartCoroutine(RetrieveGrappleIE());
     }
     public void Grab()
     {
-        isGrabbing = true;
+        //isGrabbing = true;
+        state = State.Grabbing;
 
         thrower.Grab();
     }

@@ -52,7 +52,7 @@ public class GridLevel : MonoBehaviour
 
         Vector3 playerPos = new Vector3(comptoirCoordinates.x * chunkSize, 0, comptoirCoordinates.y * chunkSize);
         playerPos += Vector3.back * 4;
-        player.transform.position = playerPos;
+        player.position = playerPos;
         player.GetComponent<RobotInitializer>().Initialize();
     }
 

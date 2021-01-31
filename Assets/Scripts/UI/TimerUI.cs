@@ -11,6 +11,9 @@ public class TimerUI : MonoBehaviour
 
     private void Update()
     {
-        timerText.SetText("{0:2}", gameManager.timer);
+        if (gameManager.timer > 99)
+            timerText.SetText("{0:0}", gameManager.timer);
+        else
+            timerText.SetText("{0:2}", gameManager.timer);
     }
 }

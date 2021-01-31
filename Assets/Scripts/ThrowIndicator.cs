@@ -13,7 +13,7 @@ public class ThrowIndicator : MonoBehaviour
 
     private void Update()
     {
-        if (!grapple.isGrabbing)
+        if (grapple.state != Grapple.State.Grabbing)
         {
             arrow.localScale = Vector3.zero;
             arrowBG.SetActive(false);

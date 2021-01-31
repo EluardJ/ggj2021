@@ -8,10 +8,10 @@ public class RobotInitializer : MonoBehaviour
 
     public void Initialize()
     {
-        for (int i = 0; i < elements.Length; i++)
-        {
-            elements[i].transform.parent = transform.parent;
-        }
+        //for (int i = 0; i < elements.Length; i++)
+        //{
+        //    elements[i].transform.parent = transform.parent;
+        //}
 
         gameObject.SetActive(true);
     }

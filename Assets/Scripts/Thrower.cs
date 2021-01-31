@@ -38,7 +38,7 @@ public class Thrower : MonoBehaviour
 
         previousInput = Input.GetAxisRaw("RightTrigger");
 
-        if (grapple.isGrabbing)
+        if (grapple.state == Grapple.State.Grabbing)
         {
             if (inputOn && !isCharging)
             {
