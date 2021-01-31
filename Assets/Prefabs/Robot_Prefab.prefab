@@ -16030,13 +16030,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155281861065596290, guid: f88fd4375b2bd394dbb776bd5c861e71,
         type: 3}
+      propertyPath: lengthInSec
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155281861065596290, guid: f88fd4375b2bd394dbb776bd5c861e71,
+        type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1.75
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7155281861065596290, guid: f88fd4375b2bd394dbb776bd5c861e71,
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 1.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7155281861065596290, guid: f88fd4375b2bd394dbb776bd5c861e71,
         type: 3}
