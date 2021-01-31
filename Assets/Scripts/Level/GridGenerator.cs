@@ -54,9 +54,9 @@ public class GridGenerator : MonoBehaviour
 
         int letterID = 0;
 
-        for (int i = 0; i < gridDimensions; i++)
+        for (int j = gridDimensions - 1; j >= 0; j--)
         {
-            for (int j = 0; j < gridDimensions; j++)
+            for (int i = 0; i < gridDimensions; i++)
             {
                 Vector3 position = new Vector3(chunkSize * i, 0, chunkSize * j);
 
@@ -82,6 +82,8 @@ public class GridGenerator : MonoBehaviour
                 _gridLevel.chunks.Add(gridCoords, chunk);
             }
         }
+
+        _gridLevel.OnLevelGenerated();
     }
 
     private void GenerateWalls()

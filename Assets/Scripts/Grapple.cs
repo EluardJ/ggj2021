@@ -26,6 +26,9 @@ public class Grapple : MonoBehaviour
     ObiRope rope;
 
     [HideInInspector] public bool isGrabbing = false;
+    [HideInInspector] public bool isLaunching = false;
+
+    float previousInput = 0;
     #endregion
 
     #region Unity Callbacks
@@ -39,11 +42,13 @@ public class Grapple : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (previousInput < 1 && Input.GetAxisRaw("RightTrigger") > 0)
         {
-            if (!isGrabbing)
+            if (!isGrabbing && !isLaunching)
                 LaunchGrapple();
         }
+
+        previousInput = Input.GetAxisRaw("RightTrigger");
     }
     #endregion
 
@@ -57,7 +62,7 @@ public class Grapple : MonoBehaviour
     {
         hookTrf.parent = null;
         hookRB.isKinematic = true;
-        //hookCollider.enabled = true;
+        isLaunching = true;
         hook.ToggleActivate(true);
 
         Vector3 target = player.position + player.forward * distance;
@@ -85,6 +90,7 @@ public class Grapple : MonoBehaviour
 
         hookRB.isKinematic = false;
         hook.ToggleActivate(false);
+        isLaunching = false;
 
         StartCoroutine(RetrieveGrappleIE());
     }
