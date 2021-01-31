@@ -46,7 +46,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         "W",
         "X",
         "Y",
-        "Z"
+        "Z"        
     };
     public void Start () {
         // shuffle prefabs.              
@@ -58,28 +58,21 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         }
     } 
 
-    public void InitializeRequestItems()
-    {
+    public void InitializeRequestItems () {
         List<Item> items = new List<Item>();
-        if (_gridLevel != null)
-        {
-            foreach (Vector2 coord in _gridLevel.chunks.Keys)
-            {
+        if (_gridLevel != null) {
+            foreach (Vector2 coord in _gridLevel.chunks.Keys) {
                 RoomChunk chunk = _gridLevel.chunks[coord];
-                if (chunk == null)
-                {
+                if (chunk == null) {
                     continue;
                 }
-                if (chunk.HasItems())
-                {
-
+                if (chunk.HasItems()) {
+                    
                 }
-                else
-                {
+                else {
                     // randomize handles.
-                    Transform[] handles = chunk.GetItemHandles();
-                    for (int i = 0; i < handles.Length; i++)
-                    {
+                    Transform[] handles = chunk.GetItemHandles();                    
+                    for (int i = 0; i < handles.Length; i++) {
                         Transform temp = handles[i];
                         int randomIndex = Random.Range(i, handles.Length);
                         handles[i] = handles[randomIndex];
@@ -88,18 +81,16 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                     // spawn and set items.
                     int chunkItemCount = Mathf.Min(handles.Length, _itemPerChunk);
                     Item[] newChunkItems = new Item[chunkItemCount];
-                    for (int i = 0; i < chunkItemCount; i++)
-                    {
+                    for (int i = 0; i < chunkItemCount; i++) {
                         Transform t = handles[i];
-                        GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[(prefabId++) % _itemPrefabs.Length]);
+                        GameObject itemGameObject = GameObject.Instantiate(_itemPrefabs[(prefabId++)%_itemPrefabs.Length]);
                         itemGameObject.transform.position = t.position;
                         itemGameObject.transform.rotation = t.rotation;
                         itemGameObject.transform.parent = t.parent;
                         Item newItem = itemGameObject.GetComponent<Item>();
                         int letterId = chunk.letterID;
                         string chunkLabel = "?";
-                        if (letterId >= 0 && letterId < lettres.Length)
-                        {
+                        if (letterId >= 0 && letterId < lettres.Length) {
                             chunkLabel = lettres[letterId];
                         }
                         newItem.SetChunkLabel(chunkLabel);
@@ -108,21 +99,22 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
                         _transformToItemLookup[t] = newItem;
                     }
                     chunk.SetItems(newChunkItems);
+
                 }
 
-                if (chunk as ComptoirChunk != null)
-                {
+
+
+
+                if (chunk as ComptoirChunk != null) {
                     (chunk as ComptoirChunk).RegisterListener(this);
                 }
-                Item[] chunkItems = chunk.GetItems();
-                if (chunkItems != null)
-                {
+                Item[] chunkItems = chunk.GetItems(); 
+                if (chunkItems != null) {
                     items.AddRange(chunkItems);
                 }
             }
         }
-        for (int i = 0; i < items.Count; i++)
-        {
+        for (int i = 0; i < items.Count; i++) {
             Item temp = items[i];
             int randomIndex = Random.Range(i, items.Count);
             items[i] = items[randomIndex];
@@ -132,67 +124,48 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         _requestedItems = items.ToArray();
     }
 
-    public void SetRequestCount(int count)
-    {
+    public void SetRequestCount (int count) {
         _count = count;
         for (int i = 0; i < count; i++)
-        {
+        {   
             PushNextRequest();
         }
     }
-
-    public void OnItemDestroyed(Item item)
-    {
-        if (_currentlyRequestedItems != null && _currentlyRequestedItems.Contains(item))
-        {
+ 
+    public void OnItemDestroyed (Item item) {
+        if (_currentlyRequestedItems != null && _currentlyRequestedItems.Contains(item)) {
             GameObject.Destroy(_requestUILookup[item].gameObject);
             _requestUILookup[item] = null;
             PushNextRequest();
         }
     }
 
-    public void OnChunckChanged()
-    {
+    public void OnChunckChanged () {
         InitializeRequestItems();
         Item[] currentlyRequestedItems = _currentlyRequestedItems.ToArray();
         for (int i = 0; i < currentlyRequestedItems.Length; i++)
         {
-            Item item = currentlyRequestedItems[i];
-            if (item == null)
-            {
+            Item item  = currentlyRequestedItems[i];
+            if (item == null) {
                 _currentlyRequestedItems.Remove(item);
             }
         }
-        for (int i = 0; i < _count - currentlyRequestedItems.Length; i++)
-        {
+        for (int i = 0; i < _count - currentlyRequestedItems.Length; i++) {
             PushNextRequest();
         }
     }
 
-<<<<<<< HEAD
-    public bool OnItemDropped(Item item)
-    {
-        bool isSuccess = false;
-        foreach (Item currentlyRequestedItem in _currentlyRequestedItems)
-        {
-            if (item == currentlyRequestedItem)
-            {
-                Debug.Log("Success !");
-=======
     public bool OnItemDropped (Item item) {   
         bool isSuccess = false;     
         foreach (Item currentlyRequestedItem in _currentlyRequestedItems) {
             if (item == currentlyRequestedItem) {
                 Debug.Log("=========>SUCCESS<=========  (" + Time.frameCount + ")");
-                _gameManager.OnSuccess();
->>>>>>> 08d0ad6670f11a62cba6f284d817c847c1d58338
+                // _gameManager.OnSuccess();
                 isSuccess = true;
             }
         }
-        if (isSuccess)
-        {
-            if (_requestUILookup.ContainsKey(item))
-            {
+        if (isSuccess) {
+            if (_requestUILookup.ContainsKey(item)) {
                 GameObject.Destroy(_requestUILookup[item].gameObject);
                 _requestUILookup[item] = null;
             }
@@ -203,16 +176,13 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         return isSuccess;
     }
 
-    public void PushNextRequest()
-    {
-        if (nextRequestedItemId >= _requestedItems.Length)
-        {
+    public void PushNextRequest () {
+        if (nextRequestedItemId >= _requestedItems.Length) {
             return;
         }
         Item requestedItem = _requestedItems[nextRequestedItemId];
         nextRequestedItemId++;
-        if (requestedItem == null || requestedItem.gameObject == null)
-        {
+        if (requestedItem == null || requestedItem.gameObject == null) {
             PushNextRequest();
         }
         RequestUI requestUI = GameObject.Instantiate(_requestUI_template).GetComponent<RequestUI>();
@@ -221,8 +191,7 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
         requestUI.SetLabel(requestedItem.GetChunkLabel());
 
         GameObject itemCopy = Instantiate(requestedItem.gameObject);
-        if (itemCopy.transform.GetComponent<Rigidbody>() != null)
-        {
+        if (itemCopy.transform.GetComponent<Rigidbody>() != null) {
             itemCopy.transform.GetComponent<Rigidbody>().isKinematic = true;
         }
         SetLayerRecursively(itemCopy, LayerMask.NameToLayer("UI"));
@@ -235,17 +204,14 @@ public class RequestManager : MonoBehaviour, IComptoirTriggerListener
 
 
 
-
+        
         _currentlyRequestedItems.Add(requestedItem);
         _requestUILookup[requestedItem] = requestUI;
     }
-    private void SetLayerRecursively(GameObject gameObject, LayerMask layer)
-    {
+    private void SetLayerRecursively (GameObject gameObject, LayerMask layer) {
         gameObject.layer = layer;
-        foreach (Transform t in gameObject.transform)
-        {
-            if (t == gameObject.transform)
-            {
+        foreach(Transform t in gameObject.transform) {
+            if (t == gameObject.transform) {
                 continue;
             }
             SetLayerRecursively(t.gameObject, layer);
