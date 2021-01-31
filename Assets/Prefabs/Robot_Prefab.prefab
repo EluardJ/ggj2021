@@ -9618,7 +9618,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7477462267796333178}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15768,6 +15768,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hook
       objectReference: {fileID: 0}
+    - target: {fileID: 1654126487819274323, guid: 2d967e7093870c74f9351c2b7f802aba,
+        type: 3}
+      propertyPath: grabParticles
+      value: 
+      objectReference: {fileID: 1974378165405001904}
     - target: {fileID: 1654126487819274323, guid: 2d967e7093870c74f9351c2b7f802aba,
         type: 3}
       propertyPath: throwParticles
